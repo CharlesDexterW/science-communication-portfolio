@@ -99,6 +99,17 @@ some people are more susceptible to harsh climate and its variations than others
 Overall, while cold weather may contribute to make you sick, virus and bacteria are the only real responsible of such diseases. So be sure to take a coat with you, specialty if you live in the mountain region.
 
 
+  <script>
+    const articles = document.querySelectorAll('article');
+
+    articles.forEach(article => {
+      const textContent = article.querySelector('p').textContent;
+      const wordCount = textContent.trim().split(/\s+/).length; 
+      
+      const countSpan = article.querySelector('.count');
+      countSpan.textContent = wordCount;
+    });
+  </script>
 </p>
 
   
