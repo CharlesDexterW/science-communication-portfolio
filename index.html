@@ -33,6 +33,22 @@
     a:hover {
         color: #66CCCC; /* Light Teal (Accent Color 6) */
     }
+    /* Layout Styles */
+    #content {
+      display: flex; /* Enable flexbox for layout */
+    }
+
+    #intro {
+      flex: 1; /* Take up available space */
+      min-width: 300px; /* Minimum width for the intro column */
+      padding-right: 20px; /* Add spacing between columns */
+    }
+    
+    #news {
+      flex: 2; /* Take up twice the space as the intro column */
+      overflow-y: auto; /* Enable scrolling for the news articles */
+      max-height: 80vh; /* Set a maximum height for the scrolling area */
+    }
   </style>
 </head>
 <body>
