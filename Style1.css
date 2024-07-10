@@ -4,7 +4,7 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Choose a clean, sans-serif font */
     line-height: 1.6; /* Generous line height for readability */
-    margin: 0;
+    margin: 10;
     padding: 0;
     background-color: #ffffff; /* White background */
     color: #333333; /* Dark gray text */
@@ -48,6 +48,7 @@ header {
     flex: 1; /* Take up available space */
     min-width: 250px; /* Minimum width for the intro section */
     padding-right: 20px; /* Add spacing between columns */
+    text-align: justify;  /* Justify all text within the body */
 }
 /* Profile Picture Styles */
 .profile-container {
@@ -56,8 +57,8 @@ header {
 }
 
 .profile-image {
-    width: 5px; /* Adjust the size as needed */
-    height: 5px;
+    width: 20px; /* Adjust the size as needed */
+    height: 20px;
     border-radius: 50%; /* Make the image round */
     object-fit: cover; /* Ensure the image covers the entire circular area */
     margin-right: 20px; /* Add spacing between the image and text */
