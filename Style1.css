@@ -92,7 +92,6 @@ header {
     flex: 2; /* Take up twice the space as the intro column */
     overflow-y: auto; /* Enable vertical scrolling for the news section */
      max-height: 80vh; /* Set a maximum height (e.g., 80% of viewport height) */
-     display: flex; /* Enable flexbox for the news articles container */
     flex-direction: column; /* Stack articles vertically */
 }
 #news .news-gallery article { /* Apply styles to each article */
