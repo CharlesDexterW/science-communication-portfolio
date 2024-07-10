@@ -54,6 +54,7 @@ header {
 #news {
     flex: 2; /* Take up twice the space as the intro column */
     overflow-y: auto; /* Enable vertical scrolling for the news section */
+     max-height: 80vh; /* Set a maximum height (e.g., 80% of viewport height) */
 }
 
 /* Footer Styles */
