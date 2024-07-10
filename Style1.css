@@ -57,11 +57,11 @@ header {
 }
 
 .profile-image {
-    width: 20px; /* Adjust the size as needed */
-    height: 20px;
+    width: 45px; /* Adjust the size as needed */
+    height: 45px;
     border-radius: 50%; /* Make the image round */
     object-fit: cover; /* Ensure the image covers the entire circular area */
-    margin-right: 20px; /* Add spacing between the image and text */
+    margin-right: 10px; /* Add spacing between the image and text */
 }
 /* News Column */
 #news {
@@ -70,6 +70,11 @@ header {
      max-height: 80vh; /* Set a maximum height (e.g., 80% of viewport height) */
      display: flex; /* Enable flexbox for the news articles container */
     flex-direction: column; /* Stack articles vertically */
+}
+#news .news-gallery article { /* Apply styles to each article */
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #eee; /* Optional divider between articles */
 }
 
 /* Footer Styles */
