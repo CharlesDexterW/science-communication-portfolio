@@ -8,6 +8,7 @@ body {
     padding: 0;
     background-color: #ffffff; /* White background */
     color: #333333; /* Dark gray text */
+    text-align: justify;  /* Justify all text within the body */
 }
 
 h1, h2, h3 {
