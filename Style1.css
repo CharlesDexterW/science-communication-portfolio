@@ -68,6 +68,7 @@ footer {
 .news-gallery {
     display: flex; /* Enable flexbox for the image gallery */
     overflow-x: auto; /* Allow horizontal scrolling if needed */
+    text-align: justify;  /* Justify all text within the body */
 }
 
 .gallery-image {
