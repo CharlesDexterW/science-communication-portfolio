@@ -79,7 +79,7 @@ header {
 .contact-images img {
     max-width: 5px; 
     height: auto;  
-    border-radius: 100%; /* Make the images round */
+    border-radius: 80%; /* Make the images round */
     margin:0 10px; /* add some margin between images */
     transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
