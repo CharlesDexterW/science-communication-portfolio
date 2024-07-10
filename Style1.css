@@ -67,8 +67,9 @@ header {
 }
 .contact-images {
     display: flex;
-    justify-content: space-around;
     margin-bottom: 1rem; 
+    justify-content: center; /* Align items to the center */
+    margin-bottom: 1rem;
 }
 
 .contact-images a { /* Style the links */
@@ -79,6 +80,7 @@ header {
     max-width: 5px; 
     height: auto;  
     border-radius: 50%; /* Make the images round */
+    margin:0 10px; /* add some margin between images */
     transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
