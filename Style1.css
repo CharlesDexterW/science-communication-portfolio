@@ -1,1 +1,88 @@
 
+/* General Styles */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Choose a clean, sans-serif font */
+    line-height: 1.6; /* Generous line height for readability */
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
+}
+
+h1, h2, h3 {
+    font-weight: 400; /* Normal font weight for headings */
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+    padding: 15px; /* Add some padding around sections */
+}
+
+/* Link Styles */
+a {
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Header Styles */
+header {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Content Container */
+.container {
+    display: flex; /* Use flexbox for the two-column layout */
+}
+
+/* Intro Column */
+#intro {
+    flex: 1; /* Take up available space */
+    min-width: 250px; /* Minimum width for the intro section */
+    padding-right: 20px; /* Add spacing between columns */
+}
+
+/* News Column */
+#news {
+    flex: 2; /* Take up twice the space as the intro column */
+    overflow-y: auto; /* Enable vertical scrolling for the news section */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Image Gallery Styles */
+.news-gallery {
+    display: flex; /* Enable flexbox for the image gallery */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+}
+
+.gallery-image {
+    margin-right: 10px; /* Add spacing between images */
+}
+
+.gallery-image img {
+    max-width: 100%; /* Ensure images scale responsively */
+    height: auto;
+}
+
+/* Contact Images */
+.contact-images {
+    display: flex;
+    justify-content: space-around; /* Distribute images evenly */
+}
+
+.contact-images img {
+    max-width: 100px; /* Set a fixed size for contact images */
+    height: auto; 
+}
