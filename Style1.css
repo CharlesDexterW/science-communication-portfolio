@@ -1,4 +1,5 @@
 
+<style>
 /* General Styles */
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Choose a clean, sans-serif font */
@@ -86,3 +87,4 @@ footer {
     max-width: 100px; /* Set a fixed size for contact images */
     height: auto; 
 }
+</style>
