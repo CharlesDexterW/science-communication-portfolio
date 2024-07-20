@@ -76,8 +76,8 @@ header {
 }
 
 .profile-image {
-    width: 50px; /* Adjust the size as needed */
-    height: 50px;
+    width: 60px; /* Adjust the size as needed */
+    height: 60px;
     border-radius: 50%; /* Make the image round */
     object-fit: cover; /* Ensure the image covers the entire circular area */
     margin-right: 5px; /* Add spacing between the image and text */
