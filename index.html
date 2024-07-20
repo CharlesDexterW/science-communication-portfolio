@@ -47,11 +47,26 @@
             <section id="news">
                 <h2>Featured News</h2>
                 <div class="news-gallery" id="news-container">  
-                </div>
-                <article>
-                      <div data-article-file="article1.html"></div>
-                      <div data-article-file="article2.html"></div>
-                </article>
+                
+                    <script type="text/javascript">
+                          const articleContainers = document.querySelectorAll('[data-article-file]');
+
+                            articleContainers.forEach(container => {
+                                const filename = container.getAttribute('data-article-file');
+                                fetch(filename)
+                                    .then(response => response.text())
+                                    .then(html => {
+                                        container.innerHTML = html;
+                                    });
+                            });
+                    </script>
+                        
+                        
+                    <div data-article-file="article1.html"></div>
+                    <div data-article-file="article2.html"></div>
+                   
+
+                </div> 
             </section>
         </div>
     </div>
