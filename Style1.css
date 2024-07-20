@@ -13,9 +13,14 @@ body {
 #intro h2, #intro p { 
     font-family: "Montserrat", sans-serif;
 }
+
 h1, h2, h3 {
-    font-weight: 400; /* Normal font weight for headings */
+    font-family: 'Montserrat', sans-serif; /* Set Montserrat font */
+    font-weight: bold;                    /* Make the font bold */
+    font-size: 2rem;                      /* Set the same font size (adjust as needed) */
+    /* ... (Other styles for h1 and h2 if desired) ... */
 }
+
 
 /* Section Styles */
 section {
