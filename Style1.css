@@ -17,7 +17,7 @@ body {
 
 #news h1, h2, p {
     font-family: 'Montserrat', sans-serif; /* Set Montserrat font */
-    font-weight: normal;                    
+    font-weight: bold;                    
     font-size: 1.2rem;                      /* Set the same font size (adjust as needed) */
     /* ... (Other styles for h1 and h2 if desired) ... */
 }
