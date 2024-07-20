@@ -91,7 +91,7 @@ header {
     max-width: 40px; 
     height: auto;  
     border-radius: 80%; /* Make the images round */
-    margin:0 10px; /* add some margin between images */
+    margin: 10px; /* add some margin between images */
     transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 
