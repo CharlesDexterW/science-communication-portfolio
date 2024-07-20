@@ -49,16 +49,19 @@
                 <div class="news-gallery" id="news-container">  
                 
                     <script type="text/javascript">
-                          const articleContainers = document.querySelectorAll('[data-article-file]');
+                          const articleFiles = ['article1.html', 'article2.html'];
+                            const newsContainer = document.getElementById('news-container');
 
-                            articleContainers.forEach(container => {
-                                const filename = container.getAttribute('data-article-file');
+                            articleFiles.forEach(filename => {
                                 fetch(filename)
                                     .then(response => response.text())
                                     .then(html => {
-                                        container.innerHTML = html;
+                                        const articleElement = document.createElement('article');
+                                        articleElement.innerHTML = html;
+                                        newsContainer.appendChild(articleElement);
                                     });
                             });
+
                     </script>
                         
                         
