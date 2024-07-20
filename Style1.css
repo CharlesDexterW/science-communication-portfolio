@@ -28,6 +28,12 @@ body {
     font-size: 1rem;  /* Adjust to a smaller size */
 }
 
+#news p { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 1rem;  /* Adjust to a smaller size */
+}
+
 /* Section Styles */
 section {
     margin-bottom: 20px;
