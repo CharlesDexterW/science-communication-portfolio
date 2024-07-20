@@ -10,9 +10,6 @@ body {
     color: #333333; /* Dark gray text */
     text-align: justify;  /* Justify all text within the body */
 }
-#intro h2, #intro p { 
-    font-family: "Montserrat", sans-serif;
-}
 
 h1, h2 {
     font-family: 'Montserrat', sans-serif; /* Set Montserrat font */
