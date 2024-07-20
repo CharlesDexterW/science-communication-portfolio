@@ -17,14 +17,14 @@ body {
 h1, h2 {
     font-family: 'Montserrat', sans-serif; /* Set Montserrat font */
     font-weight: normal;                    
-    font-size: 1.2rem;                      /* Set the same font size (adjust as needed) */
+    font-size: 2rem;                      /* Set the same font size (adjust as needed) */
     /* ... (Other styles for h1 and h2 if desired) ... */
 }
 
 h3 { 
     font-family: 'Montserrat', sans-serif;
     font-weight: normal;
-    font-size: 0.8rem;  /* Adjust to a smaller size */
+    font-size: 1.2rem;  /* Adjust to a smaller size */
 }
 
 /* Section Styles */
