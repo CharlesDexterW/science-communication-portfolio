@@ -140,8 +140,4 @@ footer {
     justify-content: space-around; /* Distribute images evenly */
 }
 
-.contact-images img {
-    max-width: 100px; /* Set a fixed size for contact images */
-    height: auto; 
-}
 </style>
