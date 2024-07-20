@@ -88,7 +88,7 @@ header {
 }
 
 .contact-images img {
-    max-width: 25px; 
+    max-width: 40px; 
     height: auto;  
     border-radius: 80%; /* Make the images round */
     margin:0 10px; /* add some margin between images */
