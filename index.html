@@ -49,22 +49,8 @@
                 <div class="news-gallery" id="news-container">  
                 </div>
                 <article>
-                    <script>
-                      fetch('article1.html')
-                        .then(response => response.text())
-                        .then(html => {
-                          document.getElementById('news-container').innerHTML = html;
-                        });
-                    </script>
-                </article>
-                <article>
-                    <script>
-                      fetch('article2.html')
-                        .then(response => response.text())
-                        .then(html => {
-                          document.getElementById('news-container').innerHTML = html;
-                        });
-                    </script>
+                      <div data-article-file="article1.html"></div>
+                      <div data-article-file="article2.html"></div>
                 </article>
             </section>
         </div>
