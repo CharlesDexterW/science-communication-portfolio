@@ -16,7 +16,7 @@ body {
 
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif; /* Set Montserrat font */
-    font-weight: bold;                    /* Make the font bold */
+    font-weight: 400px;                    
     font-size: 2rem;                      /* Set the same font size (adjust as needed) */
     /* ... (Other styles for h1 and h2 if desired) ... */
 }
