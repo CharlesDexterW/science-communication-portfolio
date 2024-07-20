@@ -22,7 +22,7 @@ body {
     /* ... (Other styles for h1 and h2 if desired) ... */
 }
 
-h3 { 
+#news h3 p { 
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1rem;  /* Adjust to a smaller size */
