@@ -10,6 +10,10 @@ body {
     color: #333333; /* Dark gray text */
     text-align: justify;  /* Justify all text within the body */
 }
+.separator {
+  border-top: 1px solid blue;
+  margin: 20px 0; /* Adjust margin as needed */
+}
 /* Media query for smaller screens (e.g., mobile devices) */
 @media only screen and (max-width: 600px) {
     body {
