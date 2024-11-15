@@ -29,10 +29,13 @@ body {
         /* Adjust navigation style for smaller screens */
     }
 /* Adjust the breakpoint as needed */
-  .container {
-    flex-direction: column; /* Stack items vertically */
-  }
-    /* ... other mobile-specific styles */
+   .container {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    #intro, #news {
+        flex: 1; /* Ensure both sections take up equal space */
+    }
 }
 
 #intro h2, #intro p { 
