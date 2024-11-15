@@ -36,6 +36,11 @@ body {
     #intro, #news {
         flex: 1; /* Ensure both sections take up equal space */
     }
+
+    /* Additional styles for mobile layout */
+    header, .home, .about, .contact, .news, .statement {
+        width: 100%; /* Make each element full width */
+    }
 }
 
 #intro h2, #intro p { 
