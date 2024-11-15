@@ -10,6 +10,24 @@ body {
     color: #333333; /* Dark gray text */
     text-align: justify;  /* Justify all text within the body */
 }
+/* Media query for smaller screens (e.g., mobile devices) */
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px; /* Adjust font size   
+ for better readability */
+    }
+
+    /* Other mobile-specific styles */
+    header {
+        text-align: center;
+    }
+
+    nav {
+        /* Adjust navigation style for smaller screens */
+    }
+
+    /* ... other mobile-specific styles */
+}
 
 #intro h2, #intro p { 
     font-family: "Roboto", sans-serif;
