@@ -16,7 +16,6 @@ body {
         font-size: 14px; /* Adjust font size   
  for better readability */
     }
-
     /* Other mobile-specific styles */
     header {
         text-align: center;
@@ -25,7 +24,10 @@ body {
     nav {
         /* Adjust navigation style for smaller screens */
     }
-
+/* Adjust the breakpoint as needed */
+  .container {
+    flex-direction: column; /* Stack items vertically */
+  }
     /* ... other mobile-specific styles */
 }
 
