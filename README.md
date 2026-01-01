@@ -12,14 +12,32 @@ Open Access Licensing: Content is explicitly protected and shared under the Crea
 ## Project Structure
 Plaintext.
 ├── index.html          # Main landing page
+
+
 ├── Style1.css          # Primary styling and layout definitions
+
+
 ├── images/             # Directory for profile pictures and social icons
+
+
 │   ├── 324a.jpg        # Profile image
+
+
 │   ├── linkedin.png    # Social media icons
+
+
 │   └── favicon.ico     # Browser tab icon
+
+
 ├── article1.html       # Portfolio piece 1
+
+
 ├── article2.html       # Portfolio piece 2
+
+
 └── article4.html       # Portfolio piece 3
+
+
 ### Tech Stack
 HTML5 & CSS3: Semantic structure and custom styling.
 
@@ -34,10 +52,10 @@ Open your terminal in the project folder.
 
 Start a simple Python server:
 
-Bash
 
-python3 -m http.server 8000
-Open your browser and navigate to http://localhost:8000.
+- Bash
+- python3 -m http.server 8000
+- Open your browser and navigate to http://localhost:8000.
 
 ### License
 This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. This means you are free to share and adapt the material, provided you give appropriate credit and do not use it for commercial purposes.
