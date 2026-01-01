@@ -11,6 +11,8 @@ Typography & Design: Integrated Google Fonts (Helvetica Neue and Open Sans) for 
 Open Access Licensing: Content is explicitly protected and shared under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license.
 ## Project Structure
 Plaintext.
+
+
 ├── index.html          # Main landing page
 
 
