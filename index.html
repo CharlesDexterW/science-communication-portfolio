@@ -1,84 +1,302 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Benjamin Garcés C. - Scientific Communications Portfolio</title>
-    <title>Scientific Communications Portfolio</title>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" width="32" height="32">
-    <link rel="stylesheet" href="Style1.css"> <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Garces C.</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a2e; --muted: #5a5a7a; --accent: #464196; --accent-light: #8e8ad4;
+            --bg: #fafaf8; --surface: #f2f1ee; --border: #e0deda; --white: #ffffff;
+            --left-width: 300px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px; }
+
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 48px;
+            background: rgba(250,250,248,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+        }
+        .topbar-name { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--accent); }
+        .topbar-right { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .lang-toggle { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 2px; gap: 2px; }
+        .lang-btn { padding: 0.2rem 0.7rem; border-radius: 2rem; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 0.73rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; color: var(--muted); transition: background 0.2s, color 0.2s; }
+        .lang-btn.active { background: var(--accent); color: var(--white); }
+
+        .layout { display: grid; grid-template-columns: var(--left-width) 1fr; min-height: 100vh; margin-top: 48px; }
+
+        .col-left {
+            position: sticky; top: 48px; height: calc(100vh - 48px); overflow-y: auto;
+            background: var(--white); border-right: 1px solid var(--border);
+            padding: 2.5rem 1.8rem; display: flex; flex-direction: column; gap: 2rem;
+        }
+        .col-left::-webkit-scrollbar { width: 4px; }
+        .col-left::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        .profile-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+        .profile-ring { position: relative; width: 110px; height: 110px; flex-shrink: 0; }
+        .profile-ring::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid var(--accent-light); opacity: 0.5; animation: pulse 3.5s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.04);opacity:.9} }
+        .profile-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--white); box-shadow: 0 4px 20px rgba(70,65,150,.15); }
+        .profile-name { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); line-height: 1.3; }
+        .profile-title { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+
+        .contact-row { display: flex; justify-content: center; gap: 0.7rem; }
+        .contact-row a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 50%; transition: border-color 0.2s, background 0.2s; }
+        .contact-row a:hover { border-color: var(--accent); background: var(--accent); }
+        .contact-row a:hover img { filter: brightness(10); }
+        .contact-row img { width: 15px; height: 15px; object-fit: contain; transition: filter 0.2s; }
+
+        .left-divider { border: none; border-top: 1px solid var(--border); }
+        .left-section-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+        .left-bio p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem; text-align: justify; line-height: 1.75; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+        .skill-tag { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 0.2rem 0.65rem; font-size: 0.7rem; color: var(--muted); font-weight: 500; }
+
+        .col-right { padding: 3rem 3.5rem 4rem; display: flex; flex-direction: column; }
+        .right-section { padding-bottom: 3.5rem; margin-bottom: 3.5rem; border-bottom: 1px solid var(--border); }
+        .right-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .section-label { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.8rem; }
+        .section-label span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+        .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.5rem, 2.5vw, 2.1rem); color: var(--ink); margin-bottom: 1.5rem; }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+        .project-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden; }
+        .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+        .project-card:hover::before { transform: scaleX(1); }
+        .project-card:hover { box-shadow: 0 6px 24px rgba(70,65,150,.1); transform: translateY(-2px); }
+        .project-status { display: inline-block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.65rem; border-radius: 2rem; margin-bottom: 0.8rem; }
+        .status-active { background: #e8f5e9; color: #2e7d32; }
+        .status-ongoing { background: #fff3e0; color: #e65100; }
+        .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+        .project-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+        .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .pub-item { display: grid; grid-template-columns: 52px 1fr; gap: 1.3rem; align-items: start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-year { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--accent-light); text-align: right; padding-top: 0.1rem; }
+        .pub-details h3 { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; line-height: 1.5; }
+        .pub-details .authors { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.2rem; }
+        .pub-details .journal { font-size: 0.8rem; color: var(--accent); font-style: italic; }
+        .pub-link { display: inline-block; margin-top: 0.4rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .pub-link:hover { border-color: var(--accent); }
+
+        .news-gallery { display: flex; flex-direction: column; gap: 1.5rem; }
+        .news-gallery article { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.8rem; transition: box-shadow 0.25s; }
+        .news-gallery article:hover { box-shadow: 0 4px 18px rgba(70,65,150,.08); }
+
+        footer { background: var(--ink); color: rgba(255,255,255,.45); text-align: center; padding: 2rem; font-size: 0.8rem; }
+        footer a { color: rgba(255,255,255,.6); }
+        .cc-row { display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 0.5rem; }
+
+        [data-lang] { display: none; }
+        .lang-en [data-lang="en"] { display: revert; }
+        .lang-es [data-lang="es"] { display: revert; }
+        span[data-lang] { display: none; }
+        .lang-en span[data-lang="en"] { display: inline; }
+        .lang-es span[data-lang="es"] { display: inline; }
+
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; }
+            .col-left { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+            .col-right { padding: 2rem 1.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
+<body class="lang-en">
 
-<body>
-    <header>
-        <h1>Benjamin Garcés C. - Scientific Communications Portfolio</h1>
-    </header>
-<hr class="separator">
-    <div class="container">
-        <div class="column" id="intro">
-            <section id="home">
-                <h2>Introduction</h2>
-                <img src="images/324a.jpg" alt="Benjamin" class="profile-image">
-                <p>Biochemistry engineer with background in molecular & cellular biology and bioinformatics. Currently working as IB science teacher. I possess skills in statistical analysis in R, genetics and I have a special interest in genetics & neurosciences. I'm consistently improving my knownledge and skills in the fields of my main academic interests. I've been into scientific communication lately due to my genuine passion for science and sort of learned to code in html for the fun of building my personal portfolio. I also love dinosaurs.</p>
-            </section>
-
-            <section id="about">
-                <h2>About this webpage</h2>
-                <p>I've built this webpage to showcase my skills in science communciation oriented to the general public. Here you'll find some articles about practical science curiosities and news about some topics of interest. You're welcome to reach out in case you need services in scientific communication, language translation, scientific research or just to chat about science. </p>
-            </section>
-
-            <section id="contact">
-                <h2>Contact</h2>
-                    <div class="contact-images">
-                            <a href="https://www.linkedin.com/in/abgc2381" target="_blank">
-                                <img src="images/linkedin.png" alt="LinkedIn">
-                            </a>
-                            <a href="https://twitter.com/agarces2381" target="_blank">
-                                <img src="images/x.png" alt="Twitter">
-                            </a>
-                            <a href="mailto:agarces2381@gmail.com">
-                                <img src="images/mail.png" alt="Email">
-                            </a>
-                        </div>
-            </section>
-            
-        </div>
-
-        <div class="column" id="news">
-            <section id="news">
-                <h2>News Articles Portfolio</h2>
-
-                <div class="news-gallery" id="news-container">  
-                    <script type="text/javascript">
-                          const articleFiles = ['article1.html', 'article2.html', 'article4.html'];
-                            const newsContainer = document.getElementById('news-container');
-
-                            articleFiles.forEach(filename => {
-                                fetch(filename)
-                                    .then(response => response.text())
-                                    .then(html => {
-                                        const articleElement = document.createElement('article');
-                                        articleElement.innerHTML = html;
-                                        newsContainer.appendChild(articleElement);
-                                    });
-                            });
-                    </script>
-                        
-                    <div data-article-file="article1.html"></div>
-                    <div data-article-file="article2.html"></div>
-                    <div data-article-file="article4.html"></div>
-                   
-
-                </div> 
-            </section>
+<div class="topbar">
+    <span class="topbar-name">Benjamin Garc&#233;s C.</span>
+    <div class="topbar-right">
+        <ul class="nav-links">
+            <li><a href="#projects"><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a></li>
+            <li><a href="#publications"><span data-lang="en">Publications</span><span data-lang="es">Publicaciones</span></a></li>
+            <li><a href="#scicomm"><span data-lang="en">Sci-Comm</span><span data-lang="es">Com. Cient&#237;fica</span></a></li>
+        </ul>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+            <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
         </div>
     </div>
+</div>
 
-<section id="Statement">
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-  <p>Unless otherwise stated, all content on this website is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).</p>
-    <ul>
-  </ul>
+<div class="layout">
+
+    <aside class="col-left">
+        <div class="profile-wrap">
+            <div class="profile-ring">
+                <img src="images/324a.jpg" alt="Benjamin Garc&#233;s C.">
+            </div>
+            <div>
+                <p class="profile-name">Benjamin<br>Garc&#233;s C.</p>
+                <p class="profile-title" data-lang="en">Biochemist &middot; Teacher &middot; Sci-Comm</p>
+                <p class="profile-title" data-lang="es">Bioqu&#237;mico &middot; Docente &middot; Com. Cient&#237;fica</p>
+            </div>
+            <div class="contact-row">
+                <a href="https://www.linkedin.com/in/abgc2381" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+                <a href="https://twitter.com/agarces2381" target="_blank"><img src="images/x.png" alt="Twitter"></a>
+                <a href="mailto:agarces2381@gmail.com"><img src="images/mail.png" alt="Email"></a>
+            </div>
+        </div>
+
+        <hr class="left-divider">
+
+        <div class="left-bio">
+            <p class="left-section-label" data-lang="en">About me</p>
+            <p class="left-section-label" data-lang="es">Sobre m&#237;</p>
+            <div data-lang="en">
+                <p>Biochemistry engineer with a background in molecular &amp; cellular biology and bioinformatics. Currently working as an IB science teacher.</p>
+                <p>My interests span genetics, neurosciences, and statistical analysis in R. I have a genuine passion for science communication and learned HTML just for the fun of building this page. I also love dinosaurs.</p>
+                <p>Feel free to reach out for science communication, language translation, scientific research, or just to talk about science.</p>
+            </div>
+            <div data-lang="es">
+                <p>Ingeniero bioqu&#237;mico con formaci&#243;n en biolog&#237;a molecular &amp; celular y bioinform&#225;tica. Actualmente me desempe&#241;o como docente de ciencias del Bachillerato Internacional.</p>
+                <p>Mis intereses se centran en la gen&#233;tica, las neurociencias y el an&#225;lisis estad&#237;stico en R. Aprend&#237; HTML por la diversi&#243;n de construir esta p&#225;gina. Tambi&#233;n me encantan los dinosaurios.</p>
+                <p>No dudes en contactarme para comunicaci&#243;n cient&#237;fica, traducci&#243;n, investigaci&#243;n o simplemente para hablar de ciencia.</p>
+            </div>
+            <div class="skills-list">
+                <span class="skill-tag">Molecular Biology</span>
+                <span class="skill-tag">Bioinformatics</span>
+                <span class="skill-tag">Genetics</span>
+                <span class="skill-tag">Neurosciences</span>
+                <span class="skill-tag">R / Statistics</span>
+                <span class="skill-tag">IB Teaching</span>
+                <span class="skill-tag">Sci-Comm</span>
+                <span class="skill-tag">Translation</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="col-right">
+
+        <div class="right-section" id="projects">
+            <div class="section-label">
+                <span data-lang="en">02 &mdash; Current Projects</span>
+                <span data-lang="es">02 &mdash; Proyectos Actuales</span>
+            </div>
+            <h2 class="section-title">
+                <span data-lang="en">What I&#39;m working on</span>
+                <span data-lang="es">En qu&#233; estoy trabajando</span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-status status-active"><span data-lang="en">Active</span><span data-lang="es">Activo</span></span>
+                    <h3 data-lang="en">Genomic Data Analysis in R</h3>
+                    <h3 data-lang="es">An&#225;lisis de Datos Gen&#243;micos en R</h3>
+                    <p data-lang="en">Exploring population-level genetic variation using publicly available datasets and custom R pipelines for statistical analysis and visualization.</p>
+                    <p data-lang="es">Exploraci&#243;n de variaci&#243;n gen&#233;tica a nivel poblacional usando conjuntos de datos p&#250;blicos y pipelines personalizados en R para an&#225;lisis estad&#237;stico y visualizaci&#243;n.</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-status status-ongoing"><span data-lang="en">Ongoing</span><span data-lang="es">En curso</span></span>
+                    <h3 data-lang="en">IB Biology Curriculum Development</h3>
+                    <h3 data-lang="es">Desarrollo Curricular de Biolog&#237;a IB</h3>
+                    <p data-lang="en">Designing inquiry-based learning experiences for IB Biology students, integrating current research and data literacy skills.</p>
+                    <p data-lang="es">Dise&#241;o de experiencias de aprendizaje por indagaci&#243;n para estudiantes de Biolog&#237;a IB, integrando investigaci&#243;n actual y alfabetizaci&#243;n en datos.</p>
+                </div>
+                <div class="project-card">
+                    <span class="project-status status-active"><span data-lang="en">Active</span><span data-lang="es">Activo</span></span>
+                    <h3 data-lang="en">Science Communication Articles</h3>
+                    <h3 data-lang="es">Art&#237;culos de Comunicaci&#243;n Cient&#237;fica</h3>
+                    <p data-lang="en">Writing accessible articles on genetics, neuroscience, and everyday science curiosities for a general audience.</p>
+                    <p data-lang="es">Redacci&#243;n de art&#237;culos accesibles sobre gen&#233;tica, neurociencias y curiosidades cient&#237;ficas cotidianas para el p&#250;blico general.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section" id="publications">
+            <div class="section-label">
+                <span data-lang="en">03 &mdash; Publications</span>
+                <span data-lang="es">03 &mdash; Publicaciones</span>
+            </div>
+            <h2 class="section-title">
+                <span data-lang="en">Research &amp; writing</span>
+                <span data-lang="es">Investigaci&#243;n y escritura</span>
+            </h2>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <div class="pub-year">2024</div>
+                    <div class="pub-details">
+                        <h3 data-lang="en">Title of your most recent publication or preprint goes here</h3>
+                        <h3 data-lang="es">T&#237;tulo de tu publicaci&#243;n o preprint m&#225;s reciente</h3>
+                        <p class="authors">Garc&#233;s C., B. et al.</p>
+                        <p class="journal" data-lang="en">Journal / Conference / Preprint server</p>
+                        <p class="journal" data-lang="es">Revista / Congreso / Servidor de preprints</p>
+                        <a href="#" class="pub-link">View &#8594;</a>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-year">2022</div>
+                    <div class="pub-details">
+                        <h3 data-lang="en">Another publication title &mdash; replace with your actual work</h3>
+                        <h3 data-lang="es">Otro t&#237;tulo de publicaci&#243;n &mdash; reemplaza con tu trabajo real</h3>
+                        <p class="authors">Garc&#233;s C., B. &amp; Co-author, A.</p>
+                        <p class="journal" data-lang="en">Journal Name, Vol. X, pp. Y&ndash;Z</p>
+                        <p class="journal" data-lang="es">Nombre de la Revista, Vol. X, pp. Y&ndash;Z</p>
+                        <a href="#" class="pub-link">Ver &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section" id="scicomm">
+            <div class="section-label">
+                <span data-lang="en">04 &mdash; Science Communication</span>
+                <span data-lang="es">04 &mdash; Comunicaci&#243;n Cient&#237;fica</span>
+            </div>
+            <h2 class="section-title">
+                <span data-lang="en">Articles &amp; portfolio</span>
+                <span data-lang="es">Art&#237;culos y portafolio</span>
+            </h2>
+            <div class="news-gallery" id="news-container">
+                <script>
+                    var articleFiles = ['article1.html','article2.html','article4.html'];
+                    var newsContainer = document.getElementById('news-container');
+                    articleFiles.forEach(function(f){
+                        fetch(f).then(function(r){return r.text();}).then(function(html){
+                            var el = document.createElement('article');
+                            el.innerHTML = html;
+                            newsContainer.appendChild(el);
+                        }).catch(function(){});
+                    });
+                </script>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<footer>
+    <div class="cc-row">
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+        </a>
+        <span data-lang="en">All content licensed under CC BY-NC-SA 4.0 unless otherwise stated.</span>
+        <span data-lang="es">Todo el contenido est&#225; bajo licencia CC BY-NC-SA 4.0 salvo que se indique lo contrario.</span>
+    </div>
+    <p style="margin-top:0.5rem;">&#169; 2024 Benjamin Garc&#233;s C.</p>
+</footer>
+
+<script>
+    function setLang(lang) {
+        document.body.className = 'lang-' + lang;
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        document.documentElement.lang = lang;
+    }
+</script>
 </body>
 </html>
-
