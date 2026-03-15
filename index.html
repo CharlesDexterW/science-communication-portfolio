@@ -270,7 +270,7 @@
             </h2>
             <div class="news-gallery" id="news-container">
                 <script>
-                    var articleFiles = ['article1.html','article2.html','article4.html','article5_1.html'];
+                    var articleFiles = ['article5_1.html','article1.html','article2.html','article4.html'];
                     var newsContainer = document.getElementById('news-container');
                     articleFiles.forEach(function(f){
                         fetch(f).then(function(r){return r.text();}).then(function(html){
