@@ -1,94 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Understanding Alzheimer's: Risk Reduction, Current Research, and a Glimpse into the Future</title>
-  <meta name="author" content="Benjamin Garcés C., Biochemistry Engineer">
-  <meta name="description" content="This article explores the complexities of Alzheimer's disease, delving into the underlying mechanisms, risk factors, and the latest research on potential treatments. Discover how factors like amyloid plaques and tau tangles contribute to cognitive decline and learn about promising therapies that may offer hope for the future.">
-  <meta name="keywords" content="Alzheimer's disease, dementia, neurodegenerative disease, brain health, cognitive decline, amyloid plaques, tau tangles, risk factors, prevention, treatment, research, brain health, aging.">
-  
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Understanding Alzheimer’s | Benjamín Garcés</title>
 <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: 18px;
-        line-height: 1.8;
-        background: #faf9f7;
-        color: #1a1a1a;
-    }
-    .article-wrapper {
-        max-width: 680px;
-        margin: 4.5rem auto;
-        padding: 0 2rem 5rem;
-    }
-    h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        line-height: 1.2;
-        margin-bottom: 0.8rem;
-        letter-spacing: -0.01em;
-    }
-    h2 {
-        font-size: 1.45rem;
-        font-weight: 700;
-        margin: 2.8rem 0 1rem;
-        line-height: 1.3;
-    }
-    p {
-        margin-bottom: 1.4rem;
-        text-align: justify;
-    }
-    .article-date {
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 0.78rem;
-        color: #6b6b6b;
-        margin-bottom: 1.2rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-    }
-    #article-summary {
-        font-size: 1.05rem;
-        color: #444;
-        font-style: italic;
-        border-left: 3px solid #464196;
-        padding-left: 1.2rem;
-        margin-bottom: 2rem;
-        text-align: left;
-    }
-    figure {
-        display: block;
-        margin: 2rem auto;
-        max-width: 520px;
-        text-align: center;
-    }
-    figure img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 6px;
-        display: block;
-        margin: 0 auto;
-    }
-    figcaption {
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 0.8rem;
-        color: #6b6b6b;
-        margin-top: 0.5rem;
-        line-height: 1.5;
-        text-align: center;
-    }
+    body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.8; background: #faf9f7; color: #1a1a1a; }
+    .article-wrapper { max-width: 680px; margin: 4.5rem auto; padding: 0 2rem 5rem; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
+    h2 { font-size: 1.45rem; font-weight: 700; margin: 2.8rem 0 1rem; line-height: 1.3; }
+    p { margin-bottom: 1.4rem; text-align: justify; }
+    .article-date { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem; color: #6b6b6b; margin-bottom: 1.2rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    #article-summary { font-size: 1.05rem; color: #444; font-style: italic; border-left: 3px solid #464196; padding-left: 1.2rem; margin-bottom: 2rem; text-align: left !important; }
+    figure { display: block; margin: 2rem auto; max-width: 520px; text-align: center; }
+    figure img { max-width: 100%; height: auto; border-radius: 6px; display: block; margin: 0 auto; }
+    figcaption { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.8rem; color: #6b6b6b; margin-top: 0.5rem; line-height: 1.5; text-align: center; }
+    nav { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; padding: 1rem 2rem; border-bottom: 1px solid #e0ddd7; color: #6b6b6b; display: flex; gap: 0.8rem; align-items: center; }
+    nav a { color: #464196; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .hero { max-width: 680px; margin: 3rem auto 0; padding: 0 2rem 2rem; border-bottom: 1px solid #e0ddd7; }
+    .category { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #464196; margin-bottom: 1rem; }
+    .subtitle { font-size: 1.1rem; color: #555; font-style: italic; margin-bottom: 1.2rem; line-height: 1.6; text-align: left !important; }
+    .meta { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #6b6b6b; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .pullquote { border-left: 3px solid #464196; padding: 1rem 1.5rem; margin: 2.2rem 0; background: #f0eff9; border-radius: 0 6px 6px 0; font-style: italic; font-size: 1.05rem; color: #333; line-height: 1.7; text-align: left !important; }
+    .info-box { border: 1px solid #e0ddd7; border-radius: 8px; padding: 1.4rem 1.6rem; margin: 2.2rem 0; background: #fff; }
+    .info-box h3 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: #464196; margin-bottom: 0.8rem; }
+    .info-box p { font-size: 0.95rem; margin-bottom: 0.6rem; color: #333; }
+    .term { border-bottom: 1px dashed #464196; cursor: help; }
+    .figure { margin: 2.4rem 0; padding: 1.4rem; background: #fff; border: 1px solid #e0ddd7; border-radius: 8px; font-family: 'Helvetica Neue', Arial, sans-serif; overflow-x: auto; }
+    .figure-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #e0ddd7; }
+    .tag { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: #f0eff9; color: #464196; padding: 4px 10px; border-radius: 20px; }
+    .refs { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e0ddd7; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.82rem; color: #6b6b6b; line-height: 1.7; }
+    .refs h3 { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: #1a1a1a; margin-bottom: 1rem; }
+    .refs ol { padding-left: 1.4rem; }
+    .refs li { margin-bottom: 0.4rem; }
+    .cc-notice { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: #6b6b6b; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0ddd7; line-height: 1.6; }
     a { color: #464196; }
     a:hover { text-decoration: underline; }
-    @media (max-width: 600px) {
-        body { font-size: 16px; }
-        .article-wrapper { padding: 0 1.5rem 3rem; margin-top: 2rem; }
-    }
+    @media (max-width: 600px) { body { font-size: 16px; } .article-wrapper, .hero { padding-left: 1.5rem; padding-right: 1.5rem; } .article-wrapper { margin-top: 2rem; } }
 </style>
 </head>
 <body>
-<div class="article-wrapper"><article class="article">
-                <h1 id="article-title">Understanding Alzheimer's: Risk Reduction, Current Research, and a Glimpse into the Future</h1>
-                
-                <p class="article-date">EDITED: July 7, 2024</p>
-                 <p id="article-summary">
+
+<nav>
+  <a href="index.html">← Home</a>
+  <span>/</span>
+  <a href="index.html#scicomm">Science communication</a>
+  <span>/</span>
+  <span>Alzheimers</span>
+</nav>
+
+<div class="hero">
+  <p class="category">Neuroscience · Medicine · Sci-comm</p>
+  <h1>Understanding Alzheimer’s: Risk Reduction, Current Research, and a Glimpse into the Future</h1>
+  <p class="subtitle">Amyloid plaques, tau tangles, and a dry pipeline of treatments — but research is advancing faster than ever.</p>
+  <div class="meta">
+    <span>By Benjamín Garcés C.</span>
+    <span>July 2024</span>
+    <span>~6 min read</span>
+  </div>
+</div>
+
+<div class="article-wrapper">
+<article>
+
+<p id="article-summary">
                     
                  This article delves into the latest research on Alzheimer's, exploring the role of proteins like amyloid plaques and tau tangles in disrupting brain function. It also discusses promising new treatments, including a groundbreaking peptide that has shown potential in protecting against neurodegeneration. While there is no cure yet, understanding the risk factors and staying informed about emerging therapies offers hope for managing and potentially preventing this debilitating disease.   
                  </p>
@@ -109,6 +87,23 @@
                 </p>
 
 
-</article></div>
+
 </html>
+
+<div class="tags">
+    <span class="tag">Neuroscience</span>
+    <span class="tag">Alzheimer’s</span>
+    <span class="tag">Dementia</span>
+    <span class="tag">Medicine</span>
+    <span class="tag">Sci-comm</span>
+</div>
+
+<div class="cc-notice">
+  © 2024 Benjamín Garcés C. — Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#464196;">CC BY-NC-SA 4.0</a> unless otherwise stated.
+</div>
+
+</article>
+</div>
+
 </body>
+</html>
