@@ -268,19 +268,79 @@
                 <span data-lang="en">Articles &amp; portfolio</span>
                 <span data-lang="es">Art&#237;culos y portafolio</span>
             </h2>
-            <div class="news-gallery" id="news-container">
-                <script>
-                    var articleFiles = ['article5_1.html','article1.html','article2.html','article4.html'];
-                    var newsContainer = document.getElementById('news-container');
-                    articleFiles.forEach(function(f){
-                        fetch(f).then(function(r){return r.text();}).then(function(html){
-                            var el = document.createElement('article');
-                            el.innerHTML = html;
-                            newsContainer.appendChild(el);
-                        }).catch(function(){});
+            <div class="news-gallery" id="news-container"></div>
+
+            <script>
+                const articles = [
+                    {
+                    title: "The virus that kills bacteria: an introduction to phage therapy",
+                    titleEs: "El virus que mata bacterias: una introducción a la terapia de fagos",
+                    date: "March 2026",
+                    dateEs: "Marzo 2026",
+                    tag: "Microbiology",
+                    tagEs: "Microbiología",
+                    description: "As antibiotic resistance grows into a global crisis, scientists are revisiting bacteriophages — viruses that kill bacteria — as a serious medical alternative to drugs that are rapidly losing their effectiveness.",
+                    descriptionEs: "Mientras la resistencia a los antibióticos crece como crisis global, los científicos retoman los bacteriófagos — virus que matan bacterias — como una alternativa médica seria a los fármacos que pierden eficacia rápidamente.",
+                    link: "article5_1.html"
+                },
+                    {
+                    title: "Does cold weather really make you sick?",
+                    titleEs: "¿El frío realmente te enferma?",
+                    date: "November 2024",
+                    dateEs: "Noviembre 2024",
+                    tag: "Health",
+                    tagEs: "Salud",
+                    description: "Mom's advice about wearing a coat might not be entirely wrong — but it's not the cold itself that makes you sick. Viruses, bacteria, genetics, and social behavior all play a role.",
+                    descriptionEs: "El consejo de mamá sobre abrigarse no está del todo equivocado — pero no es el frío en sí lo que te enferma. Los virus, bacterias, la genética y el comportamiento social también tienen su parte.",
+                    link: "article1.html"
+                },
+                    {
+                    title: "Understanding Alzheimer's: Risk Reduction, Current Research, and a Glimpse into the Future",
+                    titleEs: "Entendiendo el Alzheimer: reducción de riesgo, investigación actual y una mirada al futuro",
+                    date: "July 2024",
+                    dateEs: "Julio 2024",
+                    tag: "Neuroscience",
+                    tagEs: "Neurociencias",
+                    description: "Alzheimer's remains incurable, but research is advancing fast. This article breaks down the role of amyloid plaques and tau tangles in neurodegeneration, and explores promising new treatments on the horizon.",
+                    descriptionEs: "El Alzheimer aún no tiene cura, pero la investigación avanza rápido. Este artículo explica el rol de las placas amiloides y los ovillos de tau en la neurodegeneración, y explora prometedores tratamientos en desarrollo.",
+                    link: "article2.html"
+                },
+                    {
+                    title: "Antibiotic Resistance, a Silent Threat",
+                    titleEs: "Resistencia a los antibióticos, una amenaza silenciosa",
+                    date: "November 2024",
+                    dateEs: "Noviembre 2024",
+                    tag: "Microbiology",
+                    tagEs: "Microbiología",
+                    description: "Antibiotics nearly doubled human life expectancy — but bacteria are fighting back. This article explains how resistance develops, why it's accelerating, and what each of us can do about it.",
+                    descriptionEs: "Los antibióticos casi duplicaron la esperanza de vida humana — pero las bacterias están respondiendo. Este artículo explica cómo se desarrolla la resistencia, por qué se acelera y qué podemos hacer al respecto.",
+                    link: "article4.html"
+                },
+                ];
+
+                const container = document.getElementById('news-container');
+                const isEs = () => document.body.classList.contains('lang-es');
+
+                function buildCards() {
+                    container.innerHTML = '';
+                    articles.forEach(a => {
+                        container.innerHTML += `
+                            <article>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                                    <span class="skill-tag">${isEs() ? a.tagEs : a.tag}</span>
+                                    <span style="font-size:0.78rem; color:var(--muted);">${isEs() ? a.dateEs : a.date}</span>
+                                </div>
+                                <h3 style="font-family:'DM Serif Display',serif; font-size:1.1rem; margin-bottom:0.6rem;">${isEs() ? a.titleEs : a.title}</h3>
+                                <p style="font-size:0.88rem; color:var(--muted); margin-bottom:1rem;">${isEs() ? a.descriptionEs : a.description}</p>
+                                <a href="${a.link}" class="pub-link">Read more →</a>
+                            </article>`;
                     });
-                </script>
-            </div>
+                }
+
+                buildCards();
+            </script>
+
+            
         </div>
 
     </main>
