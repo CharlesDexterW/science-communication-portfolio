@@ -86,6 +86,9 @@
         .project-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
 
 /* In Silico grid */
+        .insilico-card-link { text-decoration: none; color: inherit; display: block; }
+        .insilico-card-link:hover { text-decoration: none; }
+        /* In Silico grid */
         .insilico-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
         .insilico-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden; }
         .insilico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2c7a4b, #5cb97e); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
@@ -241,7 +244,7 @@
             </div>
         </div>
 
-         <!-- IN SILICO -->
+<!-- IN SILICO -->
         <div class="right-section" id="insilico">
             <div class="section-label">
                 <span data-lang="en">03 &mdash; In Silico</span>
@@ -254,6 +257,7 @@
             <div class="insilico-grid">
  
                 <!-- Card 1 -->
+                <a href="genom_seq_analysis_repo.html" class="insilico-card-link">
                 <div class="insilico-card">
                     <h3>mm9-genomic-seq-analysis</h3>
                     <p data-lang="en">Python pipeline for exploratory analysis of gene annotations and chromosomal sequences from four selected chromosomes of the <em>Mus musculus</em> mm9 genome build. Covers gene counting, sequence extraction, length statistics, coding/non-coding quantification, and TATA box motif detection near transcription start sites.</p>
@@ -261,9 +265,10 @@
                     <div class="insilico-card-footer">
                         <span class="tool-tag tool-python">Python</span>
                         <span class="project-status status-done"><span data-lang="en">Done</span><span data-lang="es">Completado</span></span>
-                        <a href="https://github.com/CharlesDexterW/mm9-genomic-seq-analysis" target="_blank" class="insilico-link">GitHub &#8594;</a>
+                        <a href="https://github.com/CharlesDexterW/mm9-genomic-seq-analysis" target="_blank" class="insilico-link" onclick="event.stopPropagation()">GitHub &#8594;</a>
                     </div>
                 </div>
+                </a>
  
                 <!-- Card 2 -->
                 <div class="insilico-card">
