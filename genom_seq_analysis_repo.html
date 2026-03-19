@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upwork Portfolio — mm9 Genomic Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #F4F2ED;
+    --surface:   #FFFFFF;
+    --ink:       #1A1916;
+    --ink-mid:   #5A5750;
+    --ink-light: #9A9890;
+    --accent:    #1D6A52;
+    --accent-lt: #E4F0EC;
+    --rule:      #E0DDD6;
+    --tag-bg:    #EEEBE4;
+    --mono:      'DM Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 20px 80px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    max-width: 780px;
+    width: 100%;
+    overflow: hidden;
+    animation: rise 0.55s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Header band ── */
+  .header {
+    background: var(--ink);
+    color: #F4F2ED;
+    padding: 36px 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: 20px; right: 60px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .header-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8A9E97;
+    margin-bottom: 14px;
+  }
+
+  .header-title {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .header-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: #A8A49E;
+    line-height: 1.6;
+  }
+
+  /* ── Tags ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 22px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    background: var(--tag-bg);
+    color: var(--ink-mid);
+    padding: 5px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .tag.accent {
+    background: var(--accent-lt);
+    color: var(--accent);
+  }
+
+  /* ── Body ── */
+  .body {
+    padding: 36px 40px;
+  }
+
+  /* ── Summary ── */
+  .summary {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 36px;
+    font-weight: 300;
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+  }
+
+  /* ── Sections ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+  }
+
+  /* ── Stats grid ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 20px 22px;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink-mid);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  /* ── Deliverables ── */
+  .deliverables {
+    margin-bottom: 36px;
+  }
+
+  .deliverable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    animation: rise 0.4s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  .deliverable-item:first-of-type { border-top: 1px solid var(--rule); }
+
+  .deliverable-item:nth-child(1) { animation-delay: 0.05s; }
+  .deliverable-item:nth-child(2) { animation-delay: 0.10s; }
+  .deliverable-item:nth-child(3) { animation-delay: 0.15s; }
+  .deliverable-item:nth-child(4) { animation-delay: 0.20s; }
+  .deliverable-item:nth-child(5) { animation-delay: 0.25s; }
+  .deliverable-item:nth-child(6) { animation-delay: 0.30s; }
+  .deliverable-item:nth-child(7) { animation-delay: 0.35s; }
+
+  .di-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-light);
+    padding-top: 2px;
+    min-width: 20px;
+  }
+
+  .di-content {}
+
+  .di-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .di-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  /* ── Code pill ── */
+  .code-block {
+    background: #F7F5F0;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+
+  .code-block-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .code-block pre {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .code-block .kw  { color: var(--accent); font-weight: 500; }
+  .code-block .cm  { color: var(--ink-light); font-style: italic; }
+  .code-block .st  { color: #8B5E3C; }
+
+  /* ── Footer ── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-repo {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mid);
+  }
+
+  .footer-repo span {
+    color: var(--accent);
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  @media (max-width: 560px) {
+    .header, .tags, .body, .footer { padding-left: 24px; padding-right: 24px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .header-title { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-eyebrow">Bioinformatics · Python · Genomic Analysis</div>
+    <div class="header-title">Mouse Genome Sequence Analysis<br>Pipeline (mm9)</div>
+    <div class="header-subtitle">End-to-end annotation parsing, sequence extraction, coding region<br>quantification, and regulatory motif detection — <em>Mus musculus</em></div>
+  </div>
+
+  <!-- Tags -->
+  <div class="tags">
+    <span class="tag accent">Python 3.12</span>
+    <span class="tag accent">NumPy</span>
+    <span class="tag accent">Matplotlib</span>
+    <span class="tag">FASTA parsing</span>
+    <span class="tag">UCSC knownGene</span>
+    <span class="tag">TSS analysis</span>
+    <span class="tag">TATA motif</span>
+    <span class="tag">mm9 build</span>
+    <span class="tag">Reproducible pipeline</span>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Summary -->
+    <p class="summary">
+      A reproducible Python pipeline that processes 10,674 transcripts across four
+      mouse chromosomes — from raw FASTA and UCSC annotation files through to
+      gene-length statistics, coding/non-coding quantification, and strand-aware
+      TATA box detection. Structured for a single-command run with
+      automated report and plot output.
+    </p>
+
+    <!-- Key results -->
+    <div class="section-label">Key results</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">10,674</div>
+        <div class="stat-label">Transcripts analysed across chr6, 11, 15 &amp; 16</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">45.3%</div>
+        <div class="stat-label">Coding fraction of chromosome 6 annotation span</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">15,509 bp</div>
+        <div class="stat-label">Median transcript length (mean 45,343 bp)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">~3.2 Mb</div>
+        <div class="stat-label">Longest transcript in the dataset</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">40 bp</div>
+        <div class="stat-label">TSS search window for TATA motif detection</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2 files</div>
+        <div class="stat-label">Auto-generated outputs: report .txt + histogram .png</div>
+      </div>
+    </div>
+
+    <!-- Deliverables -->
+    <div class="section-label">What was built</div>
+    <div class="deliverables">
+
+      <div class="deliverable-item">
+        <span class="di-num">01</span>
+        <div class="di-content">
+          <div class="di-title">FASTA parser — <code style="font-family:var(--mono);font-size:12px">LoadFastaFile()</code></div>
+          <div class="di-desc">Handles both plain and zipped FASTA files. Streams line-by-line with garbage collection to keep memory use stable on large chromosomes. Correctly captures the final sequence record — a common edge-case bug in naive parsers.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">02</span>
+        <div class="di-content">
+          <div class="di-title">Gene annotation loader — <code style="font-family:var(--mono);font-size:12px">LoadGene()</code></div>
+          <div class="di-desc">Parses UCSC knownGene tab-delimited tables into a keyed dictionary supporting both transcript and CDS coordinate modes via a single boolean flag.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">03</span>
+        <div class="di-content">
+          <div class="di-title">Sequence extraction</div>
+          <div class="di-desc">Retrieves any transcript's nucleotide sequence by slicing the chromosomal string. Demonstrated on Cntn4 (uc009dcr.2, chr6: 105,627,738–106,624,264), including first-ATG start codon detection.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">04</span>
+        <div class="di-content">
+          <div class="di-title">Gene length distribution — log-scaled histogram</div>
+          <div class="di-desc">Bins computed in log₁₀ space to expose the multi-order-of-magnitude spread. Log y-axis, human-readable bp tick labels, median annotation, minimal spine styling. Exported to PNG at 150 dpi.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">05</span>
+        <div class="di-content">
+          <div class="di-title">Coding / non-coding quantification</div>
+          <div class="di-desc">Boolean NumPy array marks every annotated base position on chr6. Overlapping transcripts handled correctly via idempotent assignment — no double-counting. Result: 67.7 M coding bp vs. 81.8 M non-coding bp.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">06</span>
+        <div class="di-content">
+          <div class="di-title">Strand-aware TATA motif search — <code style="font-family:var(--mono);font-size:12px">TSSChroms()</code></div>
+          <div class="di-desc">Locates TSS positions accounting for strand direction, then searches a configurable upstream window for the canonical TATA box. Reports hit count and mean motif–TSS distance.</div>
+        </div>
+      </div>
+
+      <div class="deliverable-item">
+        <span class="di-num">07</span>
+        <div class="di-content">
+          <div class="di-title">Automated plain-text report</div>
+          <div class="di-desc">write_report() collects all computed values — counts, statistics, coding fractions, motif results, example gene details — into a datestamped structured text file generated at the end of every run.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Extensibility code snippet -->
+    <div class="section-label">Configurable in three lines</div>
+    <div class="code-block">
+      <div class="code-block-label">Main_file.py — top-of-file constants</div>
+      <pre><span class="cm"># To adapt this pipeline to a different organism or window size,</span>
+<span class="cm"># only these three constants need to change:</span>
+<span class="kw">GENE_FILE</span>  = <span class="st">'mm9_sel_chroms_knownGene.txt'</span>
+<span class="kw">FASTA_FILE</span> = <span class="st">'selChroms_mm9.fa.zip'</span>
+<span class="kw">WINDOW</span>     = <span class="st">40</span>   <span class="cm"># bp upstream/downstream of each TSS</span></pre>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-repo">github.com/benjamingarces/<span>mm9-mouse-genomic-analysis</span></div>
+    <div class="footer-note">Python 3.12 · NumPy · Matplotlib · UCSC mm9</div>
+  </div>
+
+</div><!-- /card -->
+
+</body>
+</html>

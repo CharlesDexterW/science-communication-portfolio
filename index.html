@@ -85,6 +85,23 @@
         .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
         .project-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
 
+/* In Silico grid */
+        .insilico-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        .insilico-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: box-shadow 0.25s, transform 0.25s; position: relative; overflow: hidden; }
+        .insilico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2c7a4b, #5cb97e); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+        .insilico-card:hover::before { transform: scaleX(1); }
+        .insilico-card:hover { box-shadow: 0 6px 24px rgba(44,122,75,.1); transform: translateY(-2px); }
+        .insilico-card h3 { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.4; word-break: break-word; }
+        .insilico-card p { color: var(--muted); font-size: 0.83rem; line-height: 1.6; margin-bottom: 1rem; }
+        .insilico-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+        .tool-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.65rem; border-radius: 2rem; }
+        .tool-python { background: #e8f0fb; color: #1a56a0; }
+        .tool-r { background: #eaf4fb; color: #1a6fa0; }
+        .tool-shell { background: #f0f4e8; color: #4a6b1a; }
+        .insilico-link { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #2c7a4b; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .insilico-link:hover { border-color: #2c7a4b; }
+        .status-done { background: #ede9fb; color: #464196; }
+
         .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
         .pub-item { display: grid; grid-template-columns: 52px 1fr; gap: 1.3rem; align-items: start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
         .pub-item:last-child { border-bottom: none; }
@@ -221,6 +238,57 @@
                     <p data-lang="en">Development of an HPLC method to determine the quantity of endocrine disruptors such as genisteine, present in a complex biological matrix.</p>
                     <p data-lang="es">Desarrollo de un método de HPLC para determinar la cantidad de disruptores endócrinos como genisteína, presentes en una matríz biológica compleja.</p>
                 </div>
+            </div>
+        </div>
+
+         <!-- IN SILICO -->
+        <div class="right-section" id="insilico">
+            <div class="section-label">
+                <span data-lang="en">03 &mdash; In Silico</span>
+                <span data-lang="es">03 &mdash; In Silico</span>
+            </div>
+            <h2 class="section-title">
+                <span data-lang="en">Bioinformatics portfolio</span>
+                <span data-lang="es">Portafolio de bioinform&#225;tica</span>
+            </h2>
+            <div class="insilico-grid">
+ 
+                <!-- Card 1 -->
+                <div class="insilico-card">
+                    <h3>mm9-genomic-seq-analysis</h3>
+                    <p data-lang="en">Python pipeline for exploratory analysis of gene annotations and chromosomal sequences from four selected chromosomes of the <em>Mus musculus</em> mm9 genome build. Covers gene counting, sequence extraction, length statistics, coding/non-coding quantification, and TATA box motif detection near transcription start sites.</p>
+                    <p data-lang="es">Pipeline en Python para an&#225;lisis exploratorio de anotaciones g&#233;nicas y secuencias cromosomales de cuatro cromosomas del genoma <em>Mus musculus</em> mm9. Incluye conteo de genes, extracci&#243;n de secuencias, estad&#237;sticas de longitud, cuantificaci&#243;n codificante/no codificante y detecci&#243;n del motivo TATA cerca de los sitios de inicio de transcripci&#243;n.</p>
+                    <div class="insilico-card-footer">
+                        <span class="tool-tag tool-python">Python</span>
+                        <span class="project-status status-done"><span data-lang="en">Done</span><span data-lang="es">Completado</span></span>
+                        <a href="https://github.com/CharlesDexterW/mm9-genomic-seq-analysis" target="_blank" class="insilico-link">GitHub &#8594;</a>
+                    </div>
+                </div>
+ 
+                <!-- Card 2 -->
+                <div class="insilico-card">
+                    <h3>C. elegans miRNA Sequence Analysis Pipeline</h3>
+                    <p data-lang="en">Automated Shell pipeline for reproducible miRNA analysis from miRBase v22. Processes <em>C. elegans</em> (lin-4/let-7) precursors using SeqKit for biochemical metric extraction.</p>
+                    <p data-lang="es">Pipeline automatizado en Shell para an&#225;lisis reproducible de miRNA desde miRBase v22. Procesa precursores de <em>C. elegans</em> (lin-4/let-7) con SeqKit para extracci&#243;n de m&#233;tricas bioqu&#237;micas.</p>
+                    <div class="insilico-card-footer">
+                        <span class="tool-tag tool-shell">Shell</span>
+                        <span class="project-status status-done"><span data-lang="en">Done</span><span data-lang="es">Completado</span></span>
+                        <a href="https://github.com/CharlesDexterW/C.-elegans-miRNA-Sequence-Analysis-Pipeline" target="_blank" class="insilico-link">GitHub &#8594;</a>
+                    </div>
+                </div>
+ 
+                <!-- Card 3 — fill in manually -->
+                <div class="insilico-card">
+                    <h3>YOUR TITLE HERE</h3>
+                    <p data-lang="en">Your description here.</p>
+                    <p data-lang="es">Tu descripci&#243;n aqu&#237;.</p>
+                    <div class="insilico-card-footer">
+                        <span class="tool-tag tool-r">R</span><!-- change tool class as needed -->
+                        <span class="project-status status-done"><span data-lang="en">Done</span><span data-lang="es">Completado</span></span>
+                        <a href="#" class="insilico-link">GitHub &#8594;</a>
+                    </div>
+                </div>
+ 
             </div>
         </div>
 
