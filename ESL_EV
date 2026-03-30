@@ -1,0 +1,129 @@
+<script>
+    const STORAGE_KEY = "esl_test_session";
+    let timeLeft = 3600; // 60 minutes
+    let timerInterval;
+
+    // 1. INITIALIZE: Check for existing session on load
+    window.onload = function() {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+            const session = JSON.parse(savedData);
+            if (!session.completed) {
+                if (confirm("We found an unfinished test. Would you like to resume?")) {
+                    resumeTest(session);
+                } else {
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+        }
+    };
+
+    function startTest() {
+        const name = document.getElementById('studentName').value;
+        const dob = document.getElementById('studentDOB').value;
+        const email = document.getElementById('studentEmail').value;
+        
+        if(!name || !email || !dob) { 
+            alert("Please fill in all details before starting."); 
+            return; 
+        }
+
+        // Initialize Session Object
+        const session = {
+            name: name,
+            dob: dob,
+            email: email,
+            timeLeft: 3600,
+            answers: {},
+            completed: false
+        };
+        saveToLocal(session);
+        renderTestUI();
+    }
+
+    function resumeTest(session) {
+        document.getElementById('studentName').value = session.name;
+        document.getElementById('studentDOB').value = session.dob;
+        document.getElementById('studentEmail').value = session.email;
+        timeLeft = session.timeLeft;
+
+        // Restore Radio Buttons and Text Inputs
+        Object.keys(session.answers).forEach(key => {
+            const input = document.querySelector(`[name="${key}"]`);
+            if (input) {
+                if (input.type === 'radio') {
+                    const radio = document.querySelector(`[name="${key}"][value="${session.answers[key]}"]`);
+                    if (radio) radio.checked = true;
+                } else {
+                    input.value = session.answers[key];
+                }
+            }
+        });
+
+        renderTestUI();
+    }
+
+    function renderTestUI() {
+        document.getElementById('coverPage').classList.add('hidden');
+        document.getElementById('testPage').classList.remove('hidden');
+        document.getElementById('timerDisplay').classList.remove('hidden');
+        
+        timerInterval = setInterval(updateTimer, 1000);
+        
+        // Auto-save answers whenever an input changes
+        document.getElementById('quizForm').addEventListener('change', autoSaveAnswers);
+    }
+
+    function updateTimer() {
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            finishTest();
+            return;
+        }
+        timeLeft--;
+        
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        document.getElementById('timerDisplay').innerText = `Time Left: ${minutes}:${seconds < 10 ? '0'+seconds : seconds}`;
+
+        // Sync time to local storage every 10 seconds to save performance
+        if (timeLeft % 10 === 0) {
+            updateLocalField('timeLeft', timeLeft);
+        }
+    }
+
+    function autoSaveAnswers() {
+        const formData = new FormData(document.getElementById('quizForm'));
+        const answers = {};
+        formData.forEach((value, key) => {
+            answers[key] = value;
+        });
+        updateLocalField('answers', answers);
+    }
+
+    function updateLocalField(field, value) {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (data) {
+            data[field] = value;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+    }
+
+    function saveToLocal(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function finishTest() {
+        clearInterval(timerInterval);
+        
+        // Mark as completed so it can't be resumed
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        data.completed = true;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        document.getElementById('displayName').innerText = data.name;
+        document.getElementById('testPage').classList.add('hidden');
+        document.getElementById('timerDisplay').classList.add('hidden');
+        document.getElementById('resultPage').classList.remove('hidden');
+    }
+</script>
