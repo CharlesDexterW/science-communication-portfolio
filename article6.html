@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phage therapy risks and the road ahead | Benjamín Garcés</title>
+  <link rel="icon" href="images/cell.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e; --muted: #5a5a7a; --accent: #2c5f6e; --accent-light: #8e8ad4;
+      --bg: #fafaf8; --surface: #f2f1ee; --border: #e0deda; --white: #ffffff;
+      --warn: #7a4a1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.8; font-size: 17px; }
+
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 48px;
+      background: rgba(250,250,248,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+    }
+    .topbar-name { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--accent); text-decoration: none; }
+    .lang-toggle { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 2px; gap: 2px; }
+    .lang-btn { padding: 0.2rem 0.7rem; border-radius: 2rem; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 0.73rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; color: var(--muted); transition: background 0.2s, color 0.2s; }
+    .lang-btn.active { background: var(--accent); color: var(--white); }
+
+    .article-wrap { max-width: 740px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .tag { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 0.2rem 0.75rem; font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
+    .deck { font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
+
+    .byline { font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+
+    .hero-img { width: 100%; border-radius: 10px; margin-bottom: 0.75rem; }
+    .img-caption { font-size: 0.78rem; color: var(--muted); text-align: center; margin-bottom: 2.5rem; font-style: italic; }
+
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); margin: 2.5rem 0 1rem; }
+    h3 { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--accent); margin: 1.8rem 0 0.6rem; }
+
+    p { margin-bottom: 1.2rem; }
+
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 2rem 0;
+      font-style: italic; color: var(--muted);
+    }
+    .callout cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.82rem; font-weight: 500; color: var(--accent); }
+
+    .warn-box {
+      border-left: 3px solid #9a5a1a; background: #fdf5ec;
+      padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 2rem 0;
+    }
+    .warn-box p { color: var(--warn); margin-bottom: 0; }
+    .warn-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9a5a1a; margin-bottom: 0.4rem; }
+
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.88rem; }
+    th { background: var(--surface); padding: 0.65rem 1rem; text-align: left; font-weight: 500; border-bottom: 2px solid var(--border); }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+
+    .sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .sources h2 { font-size: 1rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--muted); margin-bottom: 1rem; }
+    .sources ol { padding-left: 1.2rem; }
+    .sources li { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; line-height: 1.5; }
+
+    .footer-cc { margin-top: 2.5rem; font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .footer-cc a { color: var(--muted); }
+
+    [data-lang] { display: none; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-es [data-lang="es"] { display: block; }
+    span[data-lang] { display: none; }
+    .lang-en span[data-lang="en"] { display: inline; }
+    .lang-es span[data-lang="es"] { display: inline; }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 4rem 1.25rem 3rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<div class="topbar">
+  <a href="https://charlesdexterw.github.io/BGC/" class="topbar-name">Benjamin Garcés C.</a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="breadcrumb">
+    <a href="https://charlesdexterw.github.io/BGC/">← Home</a>
+    <span>/</span>
+    <a href="https://charlesdexterw.github.io/BGC/#scicomm">
+      <span data-lang="en">Science communication</span>
+      <span data-lang="es">Comunicación científica</span>
+    </a>
+    <span>/</span>
+    <span data-lang="en">Phage therapy — risks and the road ahead</span>
+    <span data-lang="es">Fagoterapia — riesgos y el camino por delante</span>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag" data-lang="en">Microbiology</span>
+    <span class="tag" data-lang="es">Microbiología</span>
+    <span class="tag" data-lang="en">Bioengineering</span>
+    <span class="tag" data-lang="es">Bioingeniería</span>
+    <span class="tag" data-lang="en">Regulatory science</span>
+    <span class="tag" data-lang="es">Ciencia regulatoria</span>
+    <span class="tag" data-lang="en">Sci-comm</span>
+    <span class="tag" data-lang="es">Divulgación</span>
+  </div>
+
+  <!-- ENGLISH -->
+  <div data-lang="en">
+
+    <h1>The Risks of phage therapy and the path through bioengineering</h1>
+    <p class="deck">Phages offer a genuine alternative to antibiotics — but the same patterns that turned a lifesaving drug class into a global crisis could happen again. Here is what the current state of the art says about how to prevent it.</p>
+    <div class="byline">By Benjamín Garcés C. · April 2026 · ~12 min read</div>
+
+    <img class="hero-img" src="https://charlesdexterw.github.io/BGC/images/phage_nanobanana2.png" alt="Bacteriophage illustration">
+    <p class="img-caption">A bacteriophage approaching a bacterial cell. Image generated by AI.</p>
+
+    <p>In my previous <a href="https://charlesdexterw.github.io/BGC/article5_1.html" target="_blank">article</a>, I provided an introduction to bacteriophages and shared the case for phage therapy as a serious medical option in the age of antibiotic resistance. The argument is compelling: phages are specific, self-amplifying, co-evolutionary, and found wherever bacteria live. The clinical data is growing. The science works.</p>
+
+    <p>This article, however, is about the part of the story that optimistic headlines tend to skip. If you read the fine print of phage biology — and especially if you read the emerging regulatory literature — you could notice something uncomfortable: several of the conditions that made antibiotics into a global crisis are already present in how we are approaching phage therapy. Not in the same form. But in the same structure.</p>
+
+    <p>The question is whether we are paying attention.</p>
+
+    <h2>What actually goes wrong with phage therapy</h2>
+
+    <p>The risks of phage therapy are specific. Although they are not reasons to abandon the approach — they are reasons to approach it carefully, with institutional memory of how a previous generation of powerful antimicrobials was misused into near-uselessness.</p>
+
+    <h3>Temperate phages and horizontal gene transfer</h3>
+
+    <p>Not all phages kill bacteria. Lysogenic or temperate, phages integrate their genetic material into the bacterial chromosome and replicate silently alongside it. This creates a long-term cohabitation rather than a therapeutic kill. The danger is what these phages carry with them: they are among the primary vehicles for horizontal gene transfer in bacteria, moving genes, including virulence factors and antibiotic resistance genes — among strains and even species.</p>
+
+    <p>A phage preparation that contains temperate phages or phages with transduction potential could, in the worst case, actively accelerate the spread of resistance traits. This is not a theoretical concern. The mechanisms, transformation, conjugation, and transduction are well characterized and responsible for much of the genetic "arms race" we now face with antibiotic-resistant pathogens. A carefully screened, strictly lytic phage avoids this problem. A poorly characterized preparation does not.</p>
+
+    <p>Recent work from Peru illustrates what good practice looks like here. Quispe-Villegas et al. (2025) isolated phage GA23 from hospital wastewater and subjected it to full genomic sequencing using both Nanopore and Illumina platforms. Their analysis confirmed the complete absence of lysogeny-associated genes, antimicrobial resistance genes, and virulence factors — a clean genomic profile that is a prerequisite for any candidate intended for clinical use. The phage, now named <em>Drulisvirus cayetanensis</em>, achieved 100% larval survival in a <em>Galleria mellonella</em> infection model at 96 hours. That result matters, but it only matters because the genomic screening came first.</p>
+
+    <h3>Phage resistance and the co-evolution arms race</h3>
+
+    <p>Bacteria evolve resistance to phages too, and sometimes rapidly. The mechanisms are different from antibiotic resistance but not less effective: receptor modification to prevent phage adsorption, restriction-modification systems that degrade incoming phage DNA, CRISPR-Cas systems that recognize and cut phage genomes, and abortive infection systems that cause infected cells to self-destruct before new phages can be released.</p>
+
+    <p>Phage resistance is not the catastrophe it sounds like, because phages can co-evolve in response. This is one of their fundamental advantages over antibiotics. A chemical molecule cannot adapt, but a population of phages can. The problem is that co-evolution is not guaranteed in a clinical setting, where phages are administered in controlled doses, and not as evolving populations. Resistance can emerge during a treatment course and go undetected until the therapy fails.</p>
+
+    <p>The practical response has been phage cocktails: preparations containing multiple phage types targeting the same bacterial strain via different receptor-binding proteins. Sequential administration of different cocktails, updating preparations as bacterial isolates evolve, and combining phages with antibiotics (phage-antibiotic synergy, or PAS) are all strategies that address resistance proactively. But they require the kind of systematic monitoring infrastructure that has not yet been built at scale.</p>
+
+    <h3>Stability, manufacturing, and the quality control gap</h3>
+
+    <p>Phages are living biological agents, and they behave accordingly. They degrade under heat, at extreme pH, and during processing. The Phagoburn trial — the first randomized controlled clinical trial of phage therapy conducted under full Good Manufacturing Practice standards, failed not because the phages did not work, but because the phage preparations degraded during manufacturing: titer dropped by three log units within 15 days of production. The intended dose never reached the patients.</p>
+
+    <p>This is a solvable problem. Encapsulation strategies, like liposomes, polymer microspheres, electrospun fibers, thermosensitive hydrogels, have been shown to stabilize phage preparations across storage and delivery. But each strategy adds complexity, and the regulatory frameworks for approving complex biological delivery systems are not designed for agents that replicate and evolve. The manufacturing challenge is technical; the regulatory challenge is structural.</p>
+
+    <h3>The immune system problem</h3>
+
+    <p>The human immune system recognizes phages as foreign particles and generates antibody responses against them. This can reduce circulating phage concentrations over the course of a treatment, potentially undermining efficacy, especially for systemic infections requiring intravenous administration. The good news from clinical data so far is that immune responses appear to be less of a problem than early models predicted, and no cases of phage-induced anaphylaxis have been reported in modern trials. The bad news is that the data is still sparse, and immune variability between patients is a real source of treatment unpredictability.</p>
+
+    <h2>The regulatory vacuum and why it matters more than it looks</h2>
+
+    <p>Here is where the parallel with antibiotics becomes most striking. The antibiotic crisis was not primarily a scientific failure. it was a regulatory and behavioral failure. Antibiotics were and are still overprescribed, used in livestock at sub-therapeutic doses that selected for resistance, sold without prescription in much of the world, and not developed fast enough because the economic incentives pointed elsewhere. The science produced extraordinary drugs. The systems around the science failed them.</p>
+
+    <p>Phage therapy is currently navigating a regulatory landscape that was designed for a different kind of medicine. EU pharmaceutical law — analyzed in depth by Faltus (2024), does not recognize phages as a specifically regulated category of medicinal product. Wild-type phages fall into the general definition of a "simple medicinal product" under Directive 2001/83/EC, but the practical implications are extensive: no specific GMP requirements for phage manufacturing, no harmonized EU-wide approval pathway, and a fundamental mismatch between fixed-composition drug approval logic and the patient-specific, variable-composition nature of phage therapy.</p>
+
+    <p>The magistral formula route, preparing phage therapeutics in hospital pharmacies under physician prescription, as Belgium has pioneered, sidesteps the EU regulatory framework entirely, which provides flexibility but eliminates harmonized quality standards. This is not uniformly bad: the flexibility allows treatment in cases where no approved alternative exists. But it also means there is no systematic mechanism to track adverse events, treatment failures, or the emergence of resistance across patients and institutions.</p>
+
+    <div class="warn-box">
+      <p class="warn-label">The pattern to watch</p>
+      <p>Antibiotics were used broadly before anyone had a system to monitor what happened when they were used broadly. Phage therapy, if deployed at scale without surveillance infrastructure, could reproduce that pattern — not through toxicity, but through the untracked emergence and spread of phage-resistant bacterial strains.</p>
+    </div>
+
+    <p>The EU Commission's 2023 proposal to reform Directive 2001/83/EC acknowledges phage therapy and proposes an adapted regulatory framework under Article 28. But as Faltus notes, the proposed Article 28 would not apply to magistral preparations, the most common current form of phage therapy, nor to industrially pre-manufactured, patient-independent phage cocktails, which have fixed compositions and therefore do not meet the "variable composition" criterion that triggers the adapted framework. So the gap remains.</p>
+
+    <p>What would actually help: a provision analogous to the hospital exemption for Advanced Therapy Medicinal Products, applied specifically to phage therapeutics, requiring Member States to ensure that national traceability and pharmacovigilance standards for patient-specific phage preparations are equivalent to EU-level standards. This would preserve the flexibility of the magistral route while creating the surveillance infrastructure that is currently absent.</p>
+
+    <h2>The bioengineering horizon — and its own risks</h2>
+
+    <p>If wild-type phage therapy is the bridge across the antibiotic crisis, engineered phages are what lies on the other side. The possibilities are substantial and the risks fall into an entirely different category.</p>
+
+    <h3>What bioengineering can do</h3>
+
+    <p>Several approaches have moved beyond laboratory proof-of-concept. Host range expansion through tail fiber gene recombination allows phages to infect bacterial strains they would not naturally target. Biofilm-degrading enzymes can be encoded into phage genomes, combining the phage's lytic capability with enzymatic disruption of the biofilm matrix that protects chronic infection communities. Phage-antibiotic synergy can be rationally designed rather than empirically discovered. Endolysins, the enzymes phages use to rupture bacterial cell walls, can be isolated and deployed as standalone antibacterial agents, sidestepping the delivery complications of whole-phage preparations entirely.</p>
+
+    <p>Perhaps most strikingly, phages have been engineered to exploit bacterial evolutionary trade-offs with deliberate precision. The core insight demonstrated by Chan et al. (2016) and discussed in Ling et al. (2022), is that some bacteria lose their multidrug-efflux pump function when they evolve phage resistance via receptor modification. A treatment sequence that first selects for phage resistance can, counterintuitively, restore antibiotic sensitivity. Engineered phages that target these specific receptor sites make this effect more reliable and targetable.</p>
+
+    <p>The GA23 case is instructive here in a different way. Quispe-Villegas et al. observed the formation of semi-transparent secondary halos around GA23 lytic plaques — evidence of depolymerase activity, where phage-encoded enzymes degrade the bacterial capsule. The whole-genome sequencing confirmed peptidoglycan lytic transglycosylases in both tail fiber and tail proteins. This is a naturally occurring bioengineering capability: the phage arrives equipped with enzymatic tools beyond simple lysis. Understanding which naturally occurring phages carry such capabilities, and learning to engineer them deliberately, is the trajectory of the field.</p>
+
+    <h3>What bioengineering introduces</h3>
+
+    <p>Genetically modified phages fall into a different regulatory category than wild-type phages. Under EU law, phages containing recombinant nucleic acids are classified as Gene Therapy Medicinal Products, a subcategory of Advanced Therapy Medicinal Products, and require mandatory centralized EU authorization. The regulatory pathway is more demanding, the manufacturing standards more stringent, and the environmental risk assessment requirements more extensive, because genetically modified organisms must be assessed not only for patient safety but for ecological impact.</p>
+
+    <p>This is not overregulation. It is the correct response to a real unknown. Engineered phages, if released into the environment, through patient excretion, healthcare waste, or manufacturing discharge, could interact with natural phage populations, bacterial communities, and, in principle, introduce engineered genetic elements into microbial ecosystems. The consequences of that are genuinely unpredictable at scale, and the history of introducing novel biological agents into ecosystems without adequate impact assessment is not encouraging.</p>
+
+    <p>The synthetic biology community has developed biocontainment strategies to address this: kill switches that prevent replication outside defined conditions, auxotrophic dependencies on laboratory-specific nutrients, and CRISPR-based self-limiting gene circuits. These are not perfect solutions, but they represent the right kind of thinking — designing the constraint into the therapy, not hoping it will not be necessary.</p>
+
+    <h2>The lesson from antibiotic history, applied</h2>
+
+    <p>The antibiotic resistance crisis was not inevitable. It emerged from a specific set of decisions: deploying powerful antimicrobials at scale before understanding resistance dynamics, failing to build surveillance systems to detect emerging resistance early, allowing economic incentives to prioritize broad-spectrum drugs over targeted ones, and treating a biological problem as though it were a static chemical engineering challenge.</p>
+
+    <p>Phage therapy does not carry the same risks in the same form. But the structural conditions for a similar failure are present: a regulatory framework not designed for living, evolving therapeutic agents; manufacturing quality standards that are not yet fit for purpose; a research pipeline that is clinical-trial-sparse and case-report-heavy; and a global deployment context where the most acute need — low- and middle-income countries with high rates of antibiotic-resistant infection and limited regulatory capacity — is also the context where the risks of unmonitored deployment are highest.</p>
+
+    <p>The path through this is not to slow phage therapy down. The need is urgent. It is to build the infrastructure — regulatory, manufacturing, surveillance, and genomic — that allows phage therapy to be deployed at scale without creating the next version of the problem it is trying to solve.</p>
+
+    <p>Bioengineering is central to that path, not as a shortcut but as a precision tool: phages that can be rationally designed, genomically characterized, and ecologically constrained before deployment. The GA23 case — a phage isolated, sequenced, and fully characterized before in vivo testing — is a model of the right approach at the wild-type level. Engineering extends that model into territory where the tools are more powerful and the stakes correspondingly higher.</p>
+
+    <p>We are not there yet. But the science is moving faster than the regulatory and institutional frameworks around it. Closing that gap is the work of this decade — and it is, genuinely, more important than any individual phage therapy success story.</p>
+
+    <div class="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li>Ling, H., Lou, X., Luo, Q., He, Z., Sun, M., &amp; Sun, J. (2022). Recent advances in bacteriophage-based therapeutics: Insight into the post-antibiotic era. <em>Acta Pharmaceutica Sinica B</em>, 12(12), 4348–4364. https://doi.org/10.1016/j.apsb.2022.05.007</li>
+        <li>Faltus, T. (2024). The medicinal phage — regulatory roadmap for phage therapy under EU pharmaceutical legislation. <em>Viruses</em>, 16(3), 443. https://doi.org/10.3390/v16030443</li>
+        <li>Quispe-Villegas, G., Alcántara-Lozano, G. I., Cuicapuza, D., Laureano, R., Ayzanoa, B., Tsukayama, P., &amp; Tamariz, J. (2025). In vivo evaluation of phage therapy against <em>Klebsiella pneumoniae</em> using the <em>Galleria mellonella</em> model and molecular characterization of a novel <em>Drulisvirus</em> phage species. <em>Microbiology Spectrum</em>, 13(5). https://doi.org/10.1128/spectrum.01145-24</li>
+        <li>Chan, B. K., Sistrom, M., Wertz, J. E., Kortright, K. E., Narayan, D., &amp; Turner, P. E. (2016). Phage selection restores antibiotic sensitivity in MDR <em>Pseudomonas aeruginosa</em>. <em>Scientific Reports</em>, 6, 26717.</li>
+      </ol>
+    </div>
+
+    <div class="footer-cc">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0; height:22px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+      </a>
+      <span>© 2026 Benjamín Garcés C. — Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span>
+    </div>
+
+  </div><!-- end EN -->
+
+  <!-- SPANISH -->
+  <div data-lang="es">
+
+    <h1>Los riesgos de la Terapia de Fagos y el camino a través de la Bioingeniería</h1>
+    <p class="deck">Los fagos ofrecen una alternativa real a los antibióticos — pero los mismos patrones que convirtieron a una clase de fármacos salvavidas en una crisis global podrían repetirse. Esto es lo que dice la ciencia sobre cómo prevenirlo.</p>
+    <div class="byline">Por Benjamín Garcés C. · Abril 2026 · ~12 min de lectura</div>
+
+    <img class="hero-img" src="https://charlesdexterw.github.io/BGC/images/phage_nanobanana2.png" alt="Ilustración de bacteriófago">
+    <p class="img-caption">Un bacteriófago acercándose a una célula bacteriana. Imagen generada por IA.</p>
+
+    <p>En un artículo anterior presenté a los bacteriófagos y expuse el caso de la fagoterapia como opción médica seria en la era de la resistencia a los antibióticos. El argumento es convincente: los fagos son específicos, se autorreplican, coevolucionan con las bacterias y se encuentran en todos los ambientes donde viven las bacterias. Los datos clínicos están creciendo. La ciencia funciona.</p>
+
+    <p>Pero este artículo trata la parte de la historia que los titulares optimistas suelen omitir. Porque si uno lee la letra pequeña de la biología de los fagos — y especialmente si lee la literatura regulatoria emergente — empieza a notar algo incómodo: varias de las condiciones que convirtieron a los antibióticos en una crisis global ya están presentes en la forma en que estamos abordando la fagoterapia. No en la misma forma. Pero sí en la misma estructura.</p>
+
+    <p>La pregunta es si estamos prestando atención.</p>
+
+    <h2>Qué puede salir mal en la fagoterapia</h2>
+
+    <p>Los riesgos de la fagoterapia son reales y específicos. No son razones para abandonar el enfoque — pero sí son razones para abordarlo con cuidado y con memoria institucional de cómo una generación anterior de poderosos antimicrobianos fue mal utilizada hasta quedar casi inservible.</p>
+
+    <h3>Fagos temperados y transferencia horizontal de genes</h3>
+
+    <p>No todos los fagos matan bacterias. Los fagos lisogénicos — o temperados — integran su material genético en el cromosoma bacteriano y se replican silenciosamente junto a él. Esto crea una cohabitación prolongada en lugar de una eliminación terapéutica. El peligro está en lo que estos fagos transportan: son uno de los principales vehículos de transferencia horizontal de genes en bacterias, movilizando genes — incluidos factores de virulencia y genes de resistencia a antibióticos — entre cepas e incluso entre especies.</p>
+
+    <p>Una preparación de fagos que contenga fagos temperados o fagos con potencial de transducción puede, en el peor de los casos, acelerar activamente la diseminación de rasgos de resistencia. Este no es un riesgo teórico. Los mecanismos — transformación, conjugación y transducción — están bien caracterizados y son responsables de gran parte de la "carrera armamentista" genética que enfrentamos hoy con los patógenos resistentes.</p>
+
+    <p>El trabajo reciente de Perú ilustra cómo debería verse una buena práctica. Quispe-Villegas et al. (2025) aislaron el fago GA23 de aguas residuales hospitalarias y lo sometieron a secuenciación genómica completa con plataformas Nanopore e Illumina. Su análisis confirmó la ausencia total de genes asociados a lisogenia, genes de resistencia a antimicrobianos y factores de virulencia — un perfil genómico limpio que es un prerequisito para cualquier candidato destinado a uso clínico. El fago, ahora denominado <em>Drulisvirus cayetanensis</em>, logró 100% de supervivencia larval en un modelo de infección con <em>Galleria mellonella</em> a las 96 horas. Ese resultado importa — pero solo importa porque el cribado genómico vino primero.</p>
+
+    <h3>Resistencia a los fagos y la carrera armamentista coevolutiva</h3>
+
+    <p>Las bacterias también desarrollan resistencia a los fagos — a veces rápidamente. Los mecanismos son distintos a la resistencia antibiótica pero no menos efectivos: modificación de receptores para impedir la adsorción del fago, sistemas de restricción-modificación que degradan el ADN fagémico entrante, sistemas CRISPR-Cas que reconocen y cortan los genomas de los fagos, y sistemas de infección abortiva que causan la autodestrucción de las células infectadas antes de que se liberen nuevos fagos.</p>
+
+    <p>La resistencia a los fagos no es la catástrofe que suena, porque los fagos pueden coevolucionar en respuesta. Esta es una de sus ventajas fundamentales sobre los antibióticos — una molécula química no puede adaptarse, pero una población de fagos sí puede. El problema es que la coevolución no está garantizada en un entorno clínico, donde los fagos se administran en dosis controladas, no como poblaciones en evolución. La resistencia puede emerger durante un ciclo de tratamiento y pasar desapercibida hasta que la terapia falla.</p>
+
+    <h3>Estabilidad, fabricación y la brecha de control de calidad</h3>
+
+    <p>Los fagos son agentes biológicos vivos, y se comportan como tales. Se degradan con el calor, en pH extremos, y durante el procesamiento. El ensayo Phagoburn — el primer ensayo clínico controlado aleatorizado de fagoterapia realizado bajo estándares completos de Buenas Prácticas de Manufactura — fracasó no porque los fagos no funcionaran, sino porque las preparaciones se degradaron durante la fabricación: el título disminuyó tres unidades logarítmicas en los primeros 15 días tras la producción. La dosis prevista nunca llegó a los pacientes.</p>
+
+    <p>Este es un problema resoluble. Estrategias de encapsulación — liposomas, microesferas poliméricas, fibras electrohiladas, hidrogeles termosensibles — han demostrado estabilizar las preparaciones de fagos durante el almacenamiento y la administración. Pero cada estrategia añade complejidad, y los marcos regulatorios para aprobar sistemas complejos de administración biológica no están diseñados para agentes que se replican y evolucionan.</p>
+
+    <h2>El vacío regulatorio — y por qué importa más de lo que parece</h2>
+
+    <p>Aquí es donde el paralelo con los antibióticos se vuelve más llamativo. La crisis de los antibióticos no fue principalmente un fracaso científico — fue un fracaso regulatorio y de comportamiento. Los antibióticos se sobreindicaron, se usaron en ganadería a dosis subterapéuticas que seleccionaron resistencia, se vendieron sin receta en gran parte del mundo, y no se desarrollaron con suficiente rapidez porque los incentivos económicos apuntaban en otra dirección. La ciencia produjo fármacos extraordinarios. Los sistemas alrededor de la ciencia los fallaron.</p>
+
+    <p>La fagoterapia navega actualmente por un panorama regulatorio diseñado para un tipo diferente de medicina. La legislación farmacéutica de la UE — analizada en profundidad por Faltus (2024) — no reconoce a los fagos como una categoría específicamente regulada de medicamento. Los fagos de tipo salvaje caen en la definición general de "medicamento simple" bajo la Directiva 2001/83/CE, pero las implicaciones prácticas son extensas: no hay requisitos específicos de Buenas Prácticas de Manufactura para la fabricación de fagos, no hay vía de aprobación armonizada a nivel de la UE, y hay una incompatibilidad fundamental entre la lógica de aprobación de medicamentos de composición fija y la naturaleza de composición variable y específica del paciente de la fagoterapia.</p>
+
+    <div class="warn-box">
+      <p class="warn-label">El patrón a vigilar</p>
+      <p>Los antibióticos se usaron ampliamente antes de que existiera un sistema para monitorear qué ocurría cuando se usaban ampliamente. La fagoterapia, si se despliega a escala sin infraestructura de vigilancia, podría reproducir ese patrón — no a través de toxicidad, sino a través de la emergencia y diseminación no rastreada de cepas bacterianas resistentes a los fagos.</p>
+    </div>
+
+    <p>Lo que realmente ayudaría: una disposición análoga a la exención hospitalaria para los Medicamentos de Terapia Avanzada, aplicada específicamente a los terapéuticos fagémicos, que requiera a los Estados miembros garantizar que los estándares nacionales de trazabilidad y farmacovigilancia para las preparaciones de fagos específicas del paciente sean equivalentes a los estándares de nivel europeo. Esto preservaría la flexibilidad de la vía magistral mientras crearía la infraestructura de vigilancia que actualmente está ausente.</p>
+
+    <h2>El horizonte de la bioingeniería — y sus propios riesgos</h2>
+
+    <p>Si la fagoterapia con fagos silvestres es el puente sobre la crisis de los antibióticos, los fagos modificados son lo que hay al otro lado. Las posibilidades son sustanciales — y los riesgos son una categoría diferente.</p>
+
+    <h3>Lo que puede hacer la bioingeniería</h3>
+
+    <p>Varios enfoques han superado la demostración de concepto en laboratorio. La expansión del rango de hospedadores mediante la recombinación de genes de fibras de cola permite a los fagos infectar cepas bacterianas que no atacarían naturalmente. Las enzimas degradadoras de biopelículas pueden codificarse en los genomas de los fagos, combinando la capacidad lítica del fago con la disrupción enzimática de la matriz que protege a las comunidades de infección crónica. La sinergia fago-antibiótico puede diseñarse racionalmente en lugar de descubrirse empíricamente.</p>
+
+    <p>Quizás lo más llamativo es que se han diseñado fagos para explotar con precisión deliberada los intercambios evolutivos bacterianos. El insight central — demostrado por Chan et al. (2016) y discutido en Ling et al. (2022) — es que algunas bacterias pierden su función de bomba de eflujo multifármaco cuando evolucionan resistencia al fago mediante modificación del receptor. Una secuencia de tratamiento que primero selecciona resistencia al fago puede, paradójicamente, restaurar la sensibilidad a los antibióticos.</p>
+
+    <p>El caso GA23 es instructivo aquí de manera diferente. Quispe-Villegas et al. observaron la formación de halos secundarios semiopacos alrededor de las placas líticas de GA23 — evidencia de actividad depolimerasa, donde las enzimas codificadas por el fago degradan la cápsula bacteriana. Esta es una capacidad de bioingeniería que ocurre naturalmente: el fago llega equipado con herramientas enzimáticas más allá de la simple lisis.</p>
+
+    <h3>Lo que introduce la bioingeniería</h3>
+
+    <p>Los fagos modificados genéticamente caen en una categoría regulatoria diferente a los fagos silvestres. Bajo la legislación de la UE, los fagos que contienen ácidos nucleicos recombinantes se clasifican como Medicamentos de Terapia Génica — una subcategoría de Medicamentos de Terapia Avanzada — y requieren autorización centralizada obligatoria de la UE. La vía regulatoria es más exigente, los estándares de fabricación más rigurosos, y los requisitos de evaluación de riesgo ambiental más extensos, porque los organismos modificados genéticamente deben evaluarse no solo por la seguridad del paciente sino por el impacto ecológico.</p>
+
+    <p>Esto no es sobreregulación. Es la respuesta correcta a una incógnita real. Los fagos modificados, si se liberan al medio ambiente — a través de la excreción del paciente, residuos sanitarios, o emisiones de la fabricación — podrían interactuar con poblaciones naturales de fagos, comunidades bacterianas, e introducir en principio elementos genéticos modificados en ecosistemas microbianos. Las consecuencias de eso son genuinamente impredecibles a escala, y la historia de introducir nuevos agentes biológicos en ecosistemas sin una evaluación de impacto adecuada no es alentadora.</p>
+
+    <p>La comunidad de biología sintética ha desarrollado estrategias de biocontención para abordar esto: interruptores de muerte que impiden la replicación fuera de condiciones definidas, dependencias auxotróficas de nutrientes específicos de laboratorio, y circuitos genéticos autolimitantes basados en CRISPR. Estas no son soluciones perfectas, pero representan el tipo correcto de pensamiento — diseñar la restricción dentro de la terapia, no esperar que no sea necesaria.</p>
+
+    <h2>La lección de la historia de los antibióticos, aplicada</h2>
+
+    <p>La crisis de resistencia a los antibióticos no era inevitable. Surgió de un conjunto específico de decisiones: desplegar antimicrobianos potentes a escala antes de entender la dinámica de la resistencia, no construir sistemas de vigilancia para detectar tempranamente la resistencia emergente, permitir que los incentivos económicos priorizaran los fármacos de amplio espectro sobre los dirigidos, y tratar un problema biológico como si fuera un desafío estático de ingeniería química.</p>
+
+    <p>La fagoterapia no conlleva los mismos riesgos en la misma forma. Pero las condiciones estructurales para un fracaso similar están presentes: un marco regulatorio no diseñado para agentes terapéuticos vivos y en evolución; estándares de calidad de fabricación que aún no son adecuados; una cartera de investigación escasa en ensayos clínicos y abundante en informes de casos; y un contexto de despliegue global donde la necesidad más aguda — países de ingresos bajos y medios con altas tasas de infección resistente a antibióticos y capacidad regulatoria limitada — es también el contexto donde los riesgos del despliegue no monitoreado son más altos.</p>
+
+    <p>El camino a través de esto no es ralentizar la fagoterapia. La necesidad es urgente. Es construir la infraestructura — regulatoria, de fabricación, de vigilancia y genómica — que permita desplegar la fagoterapia a escala sin crear la próxima versión del problema que intenta resolver.</p>
+
+    <p>La bioingeniería es central en ese camino, no como atajo sino como herramienta de precisión: fagos que puedan diseñarse racionalmente, caracterizarse genómicamente y contenerse ecológicamente antes del despliegue. El caso GA23 — un fago aislado, secuenciado y completamente caracterizado antes de las pruebas in vivo — es un modelo del enfoque correcto al nivel de tipo silvestre. La ingeniería extiende ese modelo hacia un territorio donde las herramientas son más poderosas y las apuestas correspondientemente más altas.</p>
+
+    <p>Aún no hemos llegado. Pero la ciencia avanza más rápido que los marcos regulatorios e institucionales a su alrededor. Cerrar esa brecha es el trabajo de esta década — y es, genuinamente, más importante que cualquier historia de éxito individual de la fagoterapia.</p>
+
+    <div class="sources">
+      <h2>Fuentes</h2>
+      <ol>
+        <li>Ling, H., Lou, X., Luo, Q., He, Z., Sun, M., &amp; Sun, J. (2022). Recent advances in bacteriophage-based therapeutics: Insight into the post-antibiotic era. <em>Acta Pharmaceutica Sinica B</em>, 12(12), 4348–4364. https://doi.org/10.1016/j.apsb.2022.05.007</li>
+        <li>Faltus, T. (2024). The medicinal phage — regulatory roadmap for phage therapy under EU pharmaceutical legislation. <em>Viruses</em>, 16(3), 443. https://doi.org/10.3390/v16030443</li>
+        <li>Quispe-Villegas, G., Alcántara-Lozano, G. I., Cuicapuza, D., Laureano, R., Ayzanoa, B., Tsukayama, P., &amp; Tamariz, J. (2025). In vivo evaluation of phage therapy against <em>Klebsiella pneumoniae</em> using the <em>Galleria mellonella</em> model and molecular characterization of a novel <em>Drulisvirus</em> phage species. <em>Microbiology Spectrum</em>, 13(5). https://doi.org/10.1128/spectrum.01145-24</li>
+        <li>Chan, B. K., Sistrom, M., Wertz, J. E., Kortright, K. E., Narayan, D., &amp; Turner, P. E. (2016). Phage selection restores antibiotic sensitivity in MDR <em>Pseudomonas aeruginosa</em>. <em>Scientific Reports</em>, 6, 26717.</li>
+      </ol>
+    </div>
+
+    <div class="footer-cc">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0; height:22px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+      </a>
+      <span>© 2026 Benjamín Garcés C. — Bajo licencia <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> salvo indicación contraria.</span>
+    </div>
+
+  </div><!-- end ES -->
+
+</div><!-- end article-wrap -->
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.documentElement.lang = lang;
+}
+</script>
+
+</body>
+</html>
