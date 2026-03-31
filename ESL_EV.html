@@ -25,15 +25,15 @@
 
 <div class="container" id="coverPage">
     <h1>English Proficiency Assessment</h1>
-    <p><strong>Instructions:</strong> You have 60 minutes to complete this 100-question test. You may only attempt each question once. Ensure your internet connection is stable before starting.</p>
+    <p><strong>Instructions:</strong> You have 60 minutes to complete this 100-question test. You may only attempt each question once. Your progress is saved automatically.</p>
     
     <h3>Student Information</h3>
     <label>Full Name:</label>
-    <input type="text" id="studentName" placeholder="e.g. John Doe" required>
+    <input type="text" id="studentName" placeholder="e.g. Andrés Garcés" required>
     <label>Date of Birth:</label>
     <input type="date" id="studentDOB" required>
     <label>Email Address:</label>
-    <input type="email" id="studentEmail" placeholder="e.g. student@email.com" required>
+    <input type="email" id="studentEmail" placeholder="e.g. bio.engineer@example.com" required>
     
     <button onclick="startTest()">Start Assessment</button>
 </div>
@@ -42,122 +42,123 @@
     <form id="quizForm">
         <<h2>Part 1: Multiple Choice</h2>
 
-<div class="question-block">
-    <p>3. There aren’t ____ chairs in the room.</p>
-    <label class="choice-label"><input type="radio" name="q3" value="a"> a) some</label>
-    <label class="choice-label"><input type="radio" name="q3" value="b"> b) a</label>
-    <label class="choice-label"><input type="radio" name="q3" value="c"> c) any</label>
-    <label class="choice-label"><input type="radio" name="q3" value="d"> d) much</label>
-</div>
+            <div class="question-block">
+                <p>3. There aren’t ____ chairs in the room.</p>
+                <label class="choice-label"><input type="radio" name="q3" value="a"> a) some</label>
+                <label class="choice-label"><input type="radio" name="q3" value="b"> b) a</label>
+                <label class="choice-label"><input type="radio" name="q3" value="c"> c) any</label>
+                <label class="choice-label"><input type="radio" name="q3" value="d"> d) much</label>
+            </div>
 
-<div class="question-block">
-    <p>4. I usually go to work ____ bus.</p>
-    <label class="choice-label"><input type="radio" name="q4" value="a"> a) by</label>
-    <label class="choice-label"><input type="radio" name="q4" value="b"> b) in</label>
-    <label class="choice-label"><input type="radio" name="q4" value="c"> c) on</label>
-</div>
+            <div class="question-block">
+                <p>4. I usually go to work ____ bus.</p>
+                <label class="choice-label"><input type="radio" name="q4" value="a"> a) by</label>
+                <label class="choice-label"><input type="radio" name="q4" value="b"> b) in</label>
+                <label class="choice-label"><input type="radio" name="q4" value="c"> c) on</label>
+            </div>
 
-<div class="question-block">
-    <p>5. How ____ is that blue jacket?</p>
-    <label class="choice-label"><input type="radio" name="q5" value="a"> a) many</label>
-    <label class="choice-label"><input type="radio" name="q5" value="b"> b) much</label>
-    <label class="choice-label"><input type="radio" name="q5" value="c"> c) cost</label>
-</div>
+            <div class="question-block">
+                <p>5. How ____ is that blue jacket?</p>
+                <label class="choice-label"><input type="radio" name="q5" value="a"> a) many</label>
+                <label class="choice-label"><input type="radio" name="q5" value="b"> b) much</label>
+                <label class="choice-label"><input type="radio" name="q5" value="c"> c) cost</label>
+            </div>
 
-<div class="question-block"><p>6. They ____ to the cinema last night.</p>
-    <label class="choice-label"><input type="radio" name="q6" value="a"> a) go</label><label class="choice-label"><input type="radio" name="q6" value="b"> b) gone</label><label class="choice-label"><input type="radio" name="q6" value="c"> c) went</label></div>
-<div class="question-block"><p>7. She ____ lunch at the moment.</p>
-    <label class="choice-label"><input type="radio" name="q7" value="a"> a) eats</label><label class="choice-label"><input type="radio" name="q7" value="b"> b) eating</label><label class="choice-label"><input type="radio" name="q7" value="c"> c) is eating</label></div>
-<div class="question-block"><p>8. I have two ____.</p>
-    <label class="choice-label"><input type="radio" name="q8" value="a"> a) childs</label><label class="choice-label"><input type="radio" name="q8" value="b"> b) children</label><label class="choice-label"><input type="radio" name="q8" value="c"> c) child</label></div>
-<div class="question-block"><p>9. He is ____ than his friend.</p>
-    <label class="choice-label"><input type="radio" name="q9" value="a"> a) taller</label><label class="choice-label"><input type="radio" name="q9" value="b"> b) tallest</label><label class="choice-label"><input type="radio" name="q9" value="c"> c) more tall</label></div>
-<div class="question-block"><p>10. Listen! The birds ____.</p>
-    <label class="choice-label"><input type="radio" name="q10" value="a"> a) sing</label><label class="choice-label"><input type="radio" name="q10" value="b"> b) are singing</label><label class="choice-label"><input type="radio" name="q10" value="c"> c) sang</label></div>
-<div class="question-block"><p>11. I ____ born in 1995.</p>
-    <label class="choice-label"><input type="radio" name="q11" value="a"> a) am</label><label class="choice-label"><input type="radio" name="q11" value="b"> b) were</label><label class="choice-label"><input type="radio" name="q11" value="c"> c) was</label></div>
-<div class="question-block"><p>12. ____ you like a cup of coffee?</p>
-    <label class="choice-label"><input type="radio" name="q12" value="a"> a) Do</label><label class="choice-label"><input type="radio" name="q12" value="b"> b) Would</label><label class="choice-label"><input type="radio" name="q12" value="c"> c) Are</label></div>
-<div class="question-block"><p>13. She ____ a car, but she has a bike.</p>
-    <label class="choice-label"><input type="radio" name="q13" value="a"> a) hasn't got</label><label class="choice-label"><input type="radio" name="q13" value="b"> b) don't have</label><label class="choice-label"><input type="radio" name="q13" value="c"> c) doesn't has</label></div>
-<div class="question-block"><p>14. We ____ breakfast at 7:00 AM every day.</p>
-    <label class="choice-label"><input type="radio" name="q14" value="a"> a) having</label><label class="choice-label"><input type="radio" name="q14" value="b"> b) have</label><label class="choice-label"><input type="radio" name="q14" value="c"> c) has</label></div>
-<div class="question-block"><p>15. Please put the keys ____ the table.</p>
-    <label class="choice-label"><input type="radio" name="q15" value="a"> a) in</label><label class="choice-label"><input type="radio" name="q15" value="b"> b) on</label><label class="choice-label"><input type="radio" name="q15" value="c"> c) at</label></div>
+            <div class="question-block"><p>6. They ____ to the cinema last night.</p>
+                <label class="choice-label"><input type="radio" name="q6" value="a"> a) go</label><label class="choice-label"><input type="radio" name="q6" value="b"> b) gone</label><label class="choice-label"><input type="radio" name="q6" value="c"> c) went</label></div>
+            <div class="question-block"><p>7. She ____ lunch at the moment.</p>
+                <label class="choice-label"><input type="radio" name="q7" value="a"> a) eats</label><label class="choice-label"><input type="radio" name="q7" value="b"> b) eating</label><label class="choice-label"><input type="radio" name="q7" value="c"> c) is eating</label></div>
+            <div class="question-block"><p>8. I have two ____.</p>
+                <label class="choice-label"><input type="radio" name="q8" value="a"> a) childs</label><label class="choice-label"><input type="radio" name="q8" value="b"> b) children</label><label class="choice-label"><input type="radio" name="q8" value="c"> c) child</label></div>
+            <div class="question-block"><p>9. He is ____ than his friend.</p>
+                <label class="choice-label"><input type="radio" name="q9" value="a"> a) taller</label><label class="choice-label"><input type="radio" name="q9" value="b"> b) tallest</label><label class="choice-label"><input type="radio" name="q9" value="c"> c) more tall</label></div>
+            <div class="question-block"><p>10. Listen! The birds ____.</p>
+                <label class="choice-label"><input type="radio" name="q10" value="a"> a) sing</label><label class="choice-label"><input type="radio" name="q10" value="b"> b) are singing</label><label class="choice-label"><input type="radio" name="q10" value="c"> c) sang</label></div>
+            <div class="question-block"><p>11. I ____ born in 1995.</p>
+                <label class="choice-label"><input type="radio" name="q11" value="a"> a) am</label><label class="choice-label"><input type="radio" name="q11" value="b"> b) were</label><label class="choice-label"><input type="radio" name="q11" value="c"> c) was</label></div>
+            <div class="question-block"><p>12. ____ you like a cup of coffee?</p>
+                <label class="choice-label"><input type="radio" name="q12" value="a"> a) Do</label><label class="choice-label"><input type="radio" name="q12" value="b"> b) Would</label><label class="choice-label"><input type="radio" name="q12" value="c"> c) Are</label></div>
+            <div class="question-block"><p>13. She ____ a car, but she has a bike.</p>
+                <label class="choice-label"><input type="radio" name="q13" value="a"> a) hasn't got</label><label class="choice-label"><input type="radio" name="q13" value="b"> b) don't have</label><label class="choice-label"><input type="radio" name="q13" value="c"> c) doesn't has</label></div>
+            <div class="question-block"><p>14. We ____ breakfast at 7:00 AM every day.</p>
+                <label class="choice-label"><input type="radio" name="q14" value="a"> a) having</label><label class="choice-label"><input type="radio" name="q14" value="b"> b) have</label><label class="choice-label"><input type="radio" name="q14" value="c"> c) has</label></div>
+            <div class="question-block"><p>15. Please put the keys ____ the table.</p>
+                <label class="choice-label"><input type="radio" name="q15" value="a"> a) in</label><label class="choice-label"><input type="radio" name="q15" value="b"> b) on</label><label class="choice-label"><input type="radio" name="q15" value="c"> c) at</label></div>
 
-<div class="question-block"><p>16. If I ____ more time, I would learn to play the violin.</p>
-    <label class="choice-label"><input type="radio" name="q16" value="a"> a) have</label><label class="choice-label"><input type="radio" name="q16" value="b"> b) had</label><label class="choice-label"><input type="radio" name="q16" value="c"> c) would have</label></div>
-<div class="question-block"><p>17. The book ____ by a famous scientist in 1920.</p>
-    <label class="choice-label"><input type="radio" name="q17" value="a"> a) wrote</label><label class="choice-label"><input type="radio" name="q17" value="b"> b) was written</label><label class="choice-label"><input type="radio" name="q17" value="c"> c) has written</label></div>
-<div class="question-block"><p>18. I’m looking forward ____ you next week.</p>
-    <label class="choice-label"><input type="radio" name="q18" value="a"> a) to see</label><label class="choice-label"><input type="radio" name="q18" value="b"> b) seeing</label><label class="choice-label"><input type="radio" name="q18" value="c"> c) to seeing</label></div>
-<div class="question-block"><p>19. He succeeded ____ passing the exam despite the difficulty.</p>
-    <label class="choice-label"><input type="radio" name="q19" value="a"> a) in</label><label class="choice-label"><input type="radio" name="q19" value="b"> b) at</label><label class="choice-label"><input type="radio" name="q19" value="c"> c) on</label></div>
-<div class="question-block"><p>20. I ____ my homework yet.</p>
-    <label class="choice-label"><input type="radio" name="q20" value="a"> a) didn't finish</label><label class="choice-label"><input type="radio" name="q20" value="b"> b) haven't finished</label><label class="choice-label"><input type="radio" name="q20" value="c"> c) don't finish</label></div>
-<div class="question-block"><p>21. That’s the house ____ I was born.</p>
-    <label class="choice-label"><input type="radio" name="q21" value="a"> a) which</label><label class="choice-label"><input type="radio" name="q21" value="b"> b) that</label><label class="choice-label"><input type="radio" name="q21" value="c"> c) where</label></div>
-<div class="question-block"><p>22. You ____ touch that; it's very dangerous.</p>
-    <label class="choice-label"><input type="radio" name="q22" value="a"> a) don't have to</label><label class="choice-label"><input type="radio" name="q22" value="b"> b) mustn't</label><label class="choice-label"><input type="radio" name="q22" value="c"> c) shouldn't</label></div>
-<div class="question-block"><p>23. She asked me where ____.</p>
-    <label class="choice-label"><input type="radio" name="q23" value="a"> a) did I live</label><label class="choice-label"><input type="radio" name="q23" value="b"> b) do I live</label><label class="choice-label"><input type="radio" name="q23" value="c"> c) I lived</label></div>
-<div class="question-block"><p>24. By this time next year, I ____ my degree.</p>
-    <label class="choice-label"><input type="radio" name="q24" value="a"> a) will finish</label><label class="choice-label"><input type="radio" name="q24" value="b"> b) will have finished</label><label class="choice-label"><input type="radio" name="q24" value="c"> c) have finished</label></div>
-<div class="question-block"><p>25. I’m used ____ up early now.</p>
-    <label class="choice-label"><input type="radio" name="q25" value="a"> a) to getting</label><label class="choice-label"><input type="radio" name="q25" value="b"> b) to get</label><label class="choice-label"><input type="radio" name="q25" value="c"> c) getting</label></div>
-<div class="question-block"><p>26. You don't like spicy food, ____?</p>
-    <label class="choice-label"><input type="radio" name="q26" value="a"> a) don't you</label><label class="choice-label"><input type="radio" name="q26" value="b"> b) do you</label><label class="choice-label"><input type="radio" name="q26" value="c"> c) aren't you</label></div>
-<div class="question-block"><p>27. I wish I ____ more money last year.</p>
-    <label class="choice-label"><input type="radio" name="q27" value="a"> a) saved</label><label class="choice-label"><input type="radio" name="q27" value="b"> b) have saved</label><label class="choice-label"><input type="radio" name="q27" value="c"> c) had saved</label></div>
-<div class="question-block"><p>28. The cake smells ____.</p>
-    <label class="choice-label"><input type="radio" name="q28" value="a"> a) delicious</label><label class="choice-label"><input type="radio" name="q28" value="b"> b) deliciously</label><label class="choice-label"><input type="radio" name="q28" value="c"> c) well</label></div>
-<div class="question-block"><p>29. I’d rather ____ at home tonight.</p>
-    <label class="choice-label"><input type="radio" name="q29" value="a"> a) stay</label><label class="choice-label"><input type="radio" name="q29" value="b"> b) to stay</label><label class="choice-label"><input type="radio" name="q29" value="c"> c) staying</label></div>
-<div class="question-block"><p>30. He denied ____ the money.</p>
-    <label class="choice-label"><input type="radio" name="q30" value="a"> a) to steal</label><label class="choice-label"><input type="radio" name="q30" value="b"> b) stealing</label><label class="choice-label"><input type="radio" name="q30" value="c"> c) steal</label></div>
-<div class="question-block"><p>31. ____ it was raining, we went for a walk.</p>
-    <label class="choice-label"><input type="radio" name="q31" value="a"> a) Despite</label><label class="choice-label"><input type="radio" name="q31" value="b"> b) However</label><label class="choice-label"><input type="radio" name="q31" value="c"> c) Although</label></div>
-<div class="question-block"><p>32. Could you tell me what ____?</p>
-    <label class="choice-label"><input type="radio" name="q32" value="a"> a) time is it</label><label class="choice-label"><input type="radio" name="q32" value="b"> b) time it is</label><label class="choice-label"><input type="radio" name="q32" value="c"> c) is the time</label></div>
-<div class="question-block"><p>33. The news ____ very shocking.</p>
-    <label class="choice-label"><input type="radio" name="q33" value="a"> a) were</label><label class="choice-label"><input type="radio" name="q33" value="b"> b) was</label><label class="choice-label"><input type="radio" name="q33" value="c"> c) are</label></div>
-<div class="question-block"><p>34. If she had studied, she ____ the test.</p>
-    <label class="choice-label"><input type="radio" name="q34" value="a"> a) would pass</label><label class="choice-label"><input type="radio" name="q34" value="b"> b) would have passed</label><label class="choice-label"><input type="radio" name="q34" value="c"> c) passed</label></div>
-<div class="question-block"><p>35. I need to ____ my hair cut.</p>
-    <label class="choice-label"><input type="radio" name="q35" value="a"> a) have</label><label class="choice-label"><input type="radio" name="q35" value="b"> b) get</label><label class="choice-label"><input type="radio" name="q35" value="c"> c) make</label></div>
+            <div class="question-block"><p>16. If I ____ more time, I would learn to play the violin.</p>
+                <label class="choice-label"><input type="radio" name="q16" value="a"> a) have</label><label class="choice-label"><input type="radio" name="q16" value="b"> b) had</label><label class="choice-label"><input type="radio" name="q16" value="c"> c) would have</label></div>
+            <div class="question-block"><p>17. The book ____ by a famous scientist in 1920.</p>
+                <label class="choice-label"><input type="radio" name="q17" value="a"> a) wrote</label><label class="choice-label"><input type="radio" name="q17" value="b"> b) was written</label><label class="choice-label"><input type="radio" name="q17" value="c"> c) has written</label></div>
+            <div class="question-block"><p>18. I’m looking forward ____ you next week.</p>
+                <label class="choice-label"><input type="radio" name="q18" value="a"> a) to see</label><label class="choice-label"><input type="radio" name="q18" value="b"> b) seeing</label><label class="choice-label"><input type="radio" name="q18" value="c"> c) to seeing</label></div>
+            <div class="question-block"><p>19. He succeeded ____ passing the exam despite the difficulty.</p>
+                <label class="choice-label"><input type="radio" name="q19" value="a"> a) in</label><label class="choice-label"><input type="radio" name="q19" value="b"> b) at</label><label class="choice-label"><input type="radio" name="q19" value="c"> c) on</label></div>
+            <div class="question-block"><p>20. I ____ my homework yet.</p>
+                <label class="choice-label"><input type="radio" name="q20" value="a"> a) didn't finish</label><label class="choice-label"><input type="radio" name="q20" value="b"> b) haven't finished</label><label class="choice-label"><input type="radio" name="q20" value="c"> c) don't finish</label></div>
+            <div class="question-block"><p>21. That’s the house ____ I was born.</p>
+                <label class="choice-label"><input type="radio" name="q21" value="a"> a) which</label><label class="choice-label"><input type="radio" name="q21" value="b"> b) that</label><label class="choice-label"><input type="radio" name="q21" value="c"> c) where</label></div>
+            <div class="question-block"><p>22. You ____ touch that; it's very dangerous.</p>
+                <label class="choice-label"><input type="radio" name="q22" value="a"> a) don't have to</label><label class="choice-label"><input type="radio" name="q22" value="b"> b) mustn't</label><label class="choice-label"><input type="radio" name="q22" value="c"> c) shouldn't</label></div>
+            <div class="question-block"><p>23. She asked me where ____.</p>
+                <label class="choice-label"><input type="radio" name="q23" value="a"> a) did I live</label><label class="choice-label"><input type="radio" name="q23" value="b"> b) do I live</label><label class="choice-label"><input type="radio" name="q23" value="c"> c) I lived</label></div>
+            <div class="question-block"><p>24. By this time next year, I ____ my degree.</p>
+                <label class="choice-label"><input type="radio" name="q24" value="a"> a) will finish</label><label class="choice-label"><input type="radio" name="q24" value="b"> b) will have finished</label><label class="choice-label"><input type="radio" name="q24" value="c"> c) have finished</label></div>
+            <div class="question-block"><p>25. I’m used ____ up early now.</p>
+                <label class="choice-label"><input type="radio" name="q25" value="a"> a) to getting</label><label class="choice-label"><input type="radio" name="q25" value="b"> b) to get</label><label class="choice-label"><input type="radio" name="q25" value="c"> c) getting</label></div>
+            <div class="question-block"><p>26. You don't like spicy food, ____?</p>
+                <label class="choice-label"><input type="radio" name="q26" value="a"> a) don't you</label><label class="choice-label"><input type="radio" name="q26" value="b"> b) do you</label><label class="choice-label"><input type="radio" name="q26" value="c"> c) aren't you</label></div>
+            <div class="question-block"><p>27. I wish I ____ more money last year.</p>
+                <label class="choice-label"><input type="radio" name="q27" value="a"> a) saved</label><label class="choice-label"><input type="radio" name="q27" value="b"> b) have saved</label><label class="choice-label"><input type="radio" name="q27" value="c"> c) had saved</label></div>
+            <div class="question-block"><p>28. The cake smells ____.</p>
+                <label class="choice-label"><input type="radio" name="q28" value="a"> a) delicious</label><label class="choice-label"><input type="radio" name="q28" value="b"> b) deliciously</label><label class="choice-label"><input type="radio" name="q28" value="c"> c) well</label></div>
+            <div class="question-block"><p>29. I’d rather ____ at home tonight.</p>
+                <label class="choice-label"><input type="radio" name="q29" value="a"> a) stay</label><label class="choice-label"><input type="radio" name="q29" value="b"> b) to stay</label><label class="choice-label"><input type="radio" name="q29" value="c"> c) staying</label></div>
+            <div class="question-block"><p>30. He denied ____ the money.</p>
+                <label class="choice-label"><input type="radio" name="q30" value="a"> a) to steal</label><label class="choice-label"><input type="radio" name="q30" value="b"> b) stealing</label><label class="choice-label"><input type="radio" name="q30" value="c"> c) steal</label></div>
+            <div class="question-block"><p>31. ____ it was raining, we went for a walk.</p>
+                <label class="choice-label"><input type="radio" name="q31" value="a"> a) Despite</label><label class="choice-label"><input type="radio" name="q31" value="b"> b) However</label><label class="choice-label"><input type="radio" name="q31" value="c"> c) Although</label></div>
+            <div class="question-block"><p>32. Could you tell me what ____?</p>
+                <label class="choice-label"><input type="radio" name="q32" value="a"> a) time is it</label><label class="choice-label"><input type="radio" name="q32" value="b"> b) time it is</label><label class="choice-label"><input type="radio" name="q32" value="c"> c) is the time</label></div>
+            <div class="question-block"><p>33. The news ____ very shocking.</p>
+                <label class="choice-label"><input type="radio" name="q33" value="a"> a) were</label><label class="choice-label"><input type="radio" name="q33" value="b"> b) was</label><label class="choice-label"><input type="radio" name="q33" value="c"> c) are</label></div>
+            <div class="question-block"><p>34. If she had studied, she ____ the test.</p>
+                <label class="choice-label"><input type="radio" name="q34" value="a"> a) would pass</label><label class="choice-label"><input type="radio" name="q34" value="b"> b) would have passed</label><label class="choice-label"><input type="radio" name="q34" value="c"> c) passed</label></div>
+            <div class="question-block"><p>35. I need to ____ my hair cut.</p>
+                <label class="choice-label"><input type="radio" name="q35" value="a"> a) have</label><label class="choice-label"><input type="radio" name="q35" value="b"> b) get</label><label class="choice-label"><input type="radio" name="q35" value="c"> c) make</label></div>
 
-<div class="question-block"><p>36. Hardly ____ the office when the phone started ringing.</p>
-    <label class="choice-label"><input type="radio" name="q36" value="a"> a) I had entered</label><label class="choice-label"><input type="radio" name="q36" value="b"> b) had I entered</label><label class="choice-label"><input type="radio" name="q36" value="c"> c) entered I</label></div>
-<div class="question-block"><p>37. The CEO suggested that the meeting ____ postponed.</p>
-    <label class="choice-label"><input type="radio" name="q37" value="a"> a) is</label><label class="choice-label"><input type="radio" name="q37" value="b"> b) be</label><label class="choice-label"><input type="radio" name="q37" value="c"> c) was</label></div>
-<div class="question-block"><p>38. It’s high time we ____ a decision about the project.</p>
-    <label class="choice-label"><input type="radio" name="q38" value="a"> a) make</label><label class="choice-label"><input type="radio" name="q38" value="b"> b) made</label><label class="choice-label"><input type="radio" name="q38" value="c"> c) have made</label></div>
-<div class="question-block"><p>39. The results were ____ better than we had anticipated.</p>
-    <label class="choice-label"><input type="radio" name="q39" value="a"> a) marginally</label><label class="choice-label"><input type="radio" name="q39" value="b"> b) significantly</label><label class="choice-label"><input type="radio" name="q39" value="c"> c) slightly</label></div>
-<div class="question-block"><p>40. Under no circumstances ____ you to leave this room.</p>
-    <label class="choice-label"><input type="radio" name="q40" value="a"> a) you are</label><label class="choice-label"><input type="radio" name="q40" value="b"> b) are you</label><label class="choice-label"><input type="radio" name="q40" value="c"> c) should</label></div>
-<div class="question-block"><p>41. He is ____ as a result of his hard work.</p>
-    <label class="choice-label"><input type="radio" name="q41" value="a"> a) where he is</label><label class="choice-label"><input type="radio" name="q41" value="b"> b) what he is</label><label class="choice-label"><input type="radio" name="q41" value="c"> c) who he is</label></div>
-<div class="question-block"><p>42. The project was ____ with difficulties from the start.</p>
-    <label class="choice-label"><input type="radio" name="q42" value="a"> a) plagued</label><label class="choice-label"><input type="radio" name="q42" value="b"> b) clouded</label><label class="choice-label"><input type="radio" name="q42" value="c"> c) bothered</label></div>
-<div class="question-block"><p>43. Were it ____ for your help, I would have failed.</p>
-    <label class="choice-label"><input type="radio" name="q43" value="a"> a) not</label><label class="choice-label"><input type="radio" name="q43" value="b"> b) no</label><label class="choice-label"><input type="radio" name="q43" value="c"> c) never</label></div>
-<div class="question-block"><p>44. She spoke ____ about her research.</p>
-    <label class="choice-label"><input type="radio" name="q44" value="a"> a) lengthily</label><label class="choice-label"><input type="radio" name="q44" value="b"> b) at length</label><label class="choice-label"><input type="radio" name="q44" value="c"> c) in length</label></div>
-<div class="question-block"><p>45. I’d rather you ____ tell him the truth yet.</p>
-    <label class="choice-label"><input type="radio" name="q45" value="a"> a) don't</label><label class="choice-label"><input type="radio" name="q45" value="b"> b) didn't</label><label class="choice-label"><input type="radio" name="q45" value="c"> c) won't</label></div>
-<div class="question-block"><p>46. There is ____ doubt that the experiment was a success.</p>
-    <label class="choice-label"><input type="radio" name="q46" value="a"> a) little</label><label class="choice-label"><input type="radio" name="q46" value="b"> b) a little</label><label class="choice-label"><input type="radio" name="q46" value="c"> c) few</label></div>
-<div class="question-block"><p>47. The suspect ____ to have fled the country.</p>
-    <label class="choice-label"><input type="radio" name="q47" value="a"> a) is believed</label><label class="choice-label"><input type="radio" name="q47" value="b"> b) believes</label><label class="choice-label"><input type="radio" name="q47" value="c"> c) is believing</label></div>
-<div class="question-block"><p>48. No ____ had we started than it began to snow.</p>
-    <label class="choice-label"><input type="radio" name="q48" value="a"> a) sooner</label><label class="choice-label"><input type="radio" name="q48" value="b"> b) later</label><label class="choice-label"><input type="radio" name="q48" value="c"> c) faster</label></div>
-<div class="question-block"><p>49. He is quite ____; he can adapt to any situation.</p>
-    <label class="choice-label"><input type="radio" name="q49" value="a"> a) versatile</label><label class="choice-label"><input type="radio" name="q49" value="b"> b) rigid</label><label class="choice-label"><input type="radio" name="q49" value="c"> c) stubborn</label></div>
-<div class="question-block"><p>50. The ____ of the problem is still unknown.</p>
-    <label class="choice-label"><input type="radio" name="q50" value="a"> a) core</label><label class="choice-label"><input type="radio" name="q50" value="b"> b) gist</label><label class="choice-label"><input type="radio" name="q50" value="c"> c) crux</label></div>
+            <div class="question-block"><p>36. Hardly ____ the office when the phone started ringing.</p>
+                <label class="choice-label"><input type="radio" name="q36" value="a"> a) I had entered</label><label class="choice-label"><input type="radio" name="q36" value="b"> b) had I entered</label><label class="choice-label"><input type="radio" name="q36" value="c"> c) entered I</label></div>
+            <div class="question-block"><p>37. The CEO suggested that the meeting ____ postponed.</p>
+                <label class="choice-label"><input type="radio" name="q37" value="a"> a) is</label><label class="choice-label"><input type="radio" name="q37" value="b"> b) be</label><label class="choice-label"><input type="radio" name="q37" value="c"> c) was</label></div>
+            <div class="question-block"><p>38. It’s high time we ____ a decision about the project.</p>
+                <label class="choice-label"><input type="radio" name="q38" value="a"> a) make</label><label class="choice-label"><input type="radio" name="q38" value="b"> b) made</label><label class="choice-label"><input type="radio" name="q38" value="c"> c) have made</label></div>
+            <div class="question-block"><p>39. The results were ____ better than we had anticipated.</p>
+                <label class="choice-label"><input type="radio" name="q39" value="a"> a) marginally</label><label class="choice-label"><input type="radio" name="q39" value="b"> b) significantly</label><label class="choice-label"><input type="radio" name="q39" value="c"> c) slightly</label></div>
+            <div class="question-block"><p>40. Under no circumstances ____ you to leave this room.</p>
+                <label class="choice-label"><input type="radio" name="q40" value="a"> a) you are</label><label class="choice-label"><input type="radio" name="q40" value="b"> b) are you</label><label class="choice-label"><input type="radio" name="q40" value="c"> c) should</label></div>
+            <div class="question-block"><p>41. He is ____ as a result of his hard work.</p>
+                <label class="choice-label"><input type="radio" name="q41" value="a"> a) where he is</label><label class="choice-label"><input type="radio" name="q41" value="b"> b) what he is</label><label class="choice-label"><input type="radio" name="q41" value="c"> c) who he is</label></div>
+            <div class="question-block"><p>42. The project was ____ with difficulties from the start.</p>
+                <label class="choice-label"><input type="radio" name="q42" value="a"> a) plagued</label><label class="choice-label"><input type="radio" name="q42" value="b"> b) clouded</label><label class="choice-label"><input type="radio" name="q42" value="c"> c) bothered</label></div>
+            <div class="question-block"><p>43. Were it ____ for your help, I would have failed.</p>
+                <label class="choice-label"><input type="radio" name="q43" value="a"> a) not</label><label class="choice-label"><input type="radio" name="q43" value="b"> b) no</label><label class="choice-label"><input type="radio" name="q43" value="c"> c) never</label></div>
+            <div class="question-block"><p>44. She spoke ____ about her research.</p>
+                <label class="choice-label"><input type="radio" name="q44" value="a"> a) lengthily</label><label class="choice-label"><input type="radio" name="q44" value="b"> b) at length</label><label class="choice-label"><input type="radio" name="q44" value="c"> c) in length</label></div>
+            <div class="question-block"><p>45. I’d rather you ____ tell him the truth yet.</p>
+                <label class="choice-label"><input type="radio" name="q45" value="a"> a) don't</label><label class="choice-label"><input type="radio" name="q45" value="b"> b) didn't</label><label class="choice-label"><input type="radio" name="q45" value="c"> c) won't</label></div>
+            <div class="question-block"><p>46. There is ____ doubt that the experiment was a success.</p>
+                <label class="choice-label"><input type="radio" name="q46" value="a"> a) little</label><label class="choice-label"><input type="radio" name="q46" value="b"> b) a little</label><label class="choice-label"><input type="radio" name="q46" value="c"> c) few</label></div>
+            <div class="question-block"><p>47. The suspect ____ to have fled the country.</p>
+                <label class="choice-label"><input type="radio" name="q47" value="a"> a) is believed</label><label class="choice-label"><input type="radio" name="q47" value="b"> b) believes</label><label class="choice-label"><input type="radio" name="q47" value="c"> c) is believing</label></div>
+            <div class="question-block"><p>48. No ____ had we started than it began to snow.</p>
+                <label class="choice-label"><input type="radio" name="q48" value="a"> a) sooner</label><label class="choice-label"><input type="radio" name="q48" value="b"> b) later</label><label class="choice-label"><input type="radio" name="q48" value="c"> c) faster</label></div>
+            <div class="question-block"><p>49. He is quite ____; he can adapt to any situation.</p>
+                <label class="choice-label"><input type="radio" name="q49" value="a"> a) versatile</label><label class="choice-label"><input type="radio" name="q49" value="b"> b) rigid</label><label class="choice-label"><input type="radio" name="q49" value="c"> c) stubborn</label></div>
+            <div class="question-block"><p>50. The ____ of the problem is still unknown.</p>
+                <label class="choice-label"><input type="radio" name="q50" value="a"> a) core</label><label class="choice-label"><input type="radio" name="q50" value="b"> b) gist</label><label class="choice-label"><input type="radio" name="q50" value="c"> c) crux</label></div>
 
-<h2>Part 2: Sentence Completion</h2>
+        <h2>Part 2: Sentence Completion</h2>
+
 <div class="question-block"><p>51. She has been living here __________ 2010.</p><input type="text" name="q51"></div>
 <div class="question-block"><p>52. This is the __________ (good) movie I have ever seen.</p><input type="text" name="q52"></div>
 <div class="question-block"><p>53. You __________ (not/must) smoke in the hospital.</p><input type="text" name="q53"></div>
@@ -216,7 +217,7 @@
 
 <h3>Paragraph Completion</h3>
 <div class="question-block">
-    <p>Complete the missing letters: The scien**tist** (96) is work**ing** (97) in the lab**oratory** (98). He is analy**zing** (99) the resu**lts** (100) of the experiment.</p>
+    <p>Complete the missing letters: The scien___ (96) is work____ (97) in the lab_____ (98). He is analy___ (99) the resu____. (100) of the experiment.</p>
     96: <input type="text" name="q96" size="5"> 
     97: <input type="text" name="q97" size="5"> 
     98: <input type="text" name="q98" size="5"> 
