@@ -1,3 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Proficiency Assessment - CEFR Standard</title>
+    <style>
+        :root { --slate: #64748b; --cool-gray: #f8fafc; --primary: #0f172a; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--cool-gray); color: var(--primary); line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .hidden { display: none; }
+        .timer { position: fixed; top: 20px; right: 20px; background: #e2e8f0; padding: 10px 20px; border-radius: 20px; font-weight: bold; border: 2px solid var(--slate); }
+        h1, h2 { border-bottom: 2px solid var(--slate); padding-bottom: 10px; }
+        input[type="text"], input[type="email"], input[type="date"], textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #cbd5e1; border-radius: 4px; }
+        .question-block { margin-bottom: 30px; padding: 20px; border-left: 4px solid var(--slate); background: #f1f5f9; }
+        button { background-color: var(--primary); color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { background-color: var(--slate); }
+        .choice-label { display: block; margin: 8px 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="timer hidden" id="timerDisplay">Time Left: 60:00</div>
+
+<div class="container" id="coverPage">
+    <h1>English Proficiency Assessment</h1>
+    <p><strong>Instructions:</strong> You have 60 minutes to complete this 100-question test. You may only attempt each question once. Ensure your internet connection is stable before starting.</p>
+    
+    <h3>Student Information</h3>
+    <label>Full Name:</label>
+    <input type="text" id="studentName" placeholder="e.g. John Doe" required>
+    <label>Date of Birth:</label>
+    <input type="date" id="studentDOB" required>
+    <label>Email Address:</label>
+    <input type="email" id="studentEmail" placeholder="e.g. student@email.com" required>
+    
+    <button onclick="startTest()">Start Assessment</button>
+</div>
+
+<div class="container hidden" id="testPage">
+    <form id="quizForm">
+        <h2>Part 1: Multiple Choice</h2>
+        <div class="question-block">
+            <p>1. I ____ a student at the university.</p>
+            <label class="choice-label"><input type="radio" name="q1" value="a"> a) is</label>
+            <label class="choice-label"><input type="radio" name="q1" value="b"> b) am</label>
+            <label class="choice-label"><input type="radio" name="q1" value="c"> c) are</label>
+            <label class="choice-label"><input type="radio" name="q1" value="d"> d) be</label>
+        </div>
+
+        <div class="question-block">
+            <p>2. Where ____ your brother work?</p>
+            <label class="choice-label"><input type="radio" name="q2" value="a"> a) do</label>
+            <label class="choice-label"><input type="radio" name="q2" value="b"> b) does</label>
+            <label class="choice-label"><input type="radio" name="q2" value="c"> c) is</label>
+        </div>
+
+        <h2>Part 2: Sentence Completion</h2>
+        <div class="question-block">
+            <p>51. She has been living here __________ 2010.</p>
+            <input type="text" name="q51">
+        </div>
+
+        <h2>Part 3: Open Questions</h2>
+        <div class="question-block">
+            <p>81. Describe your typical workday.</p>
+            <textarea name="q81" rows="3"></textarea>
+        </div>
+
+        <button type="button" onclick="finishTest()">Submit Test</button>
+    </form>
+</div>
+
+<div class="container hidden" id="resultPage">
+    <h2>Test Completed</h2>
+    <p>Thank you, <span id="displayName"></span>. Your responses have been recorded.</p>
+    <p>Please click the button below to download your answer sheet and send it to your instructor.</p>
+    <button onclick="window.print()">Download Results as PDF</button>
+</div>
+
 <script>
     const STORAGE_KEY = "esl_test_session";
     let timeLeft = 3600; // 60 minutes
@@ -127,3 +208,5 @@
         document.getElementById('resultPage').classList.remove('hidden');
     }
 </script>
+</body>
+</html>
