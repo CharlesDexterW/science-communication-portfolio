@@ -349,19 +349,42 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
 
-    function finishTest() {
-        clearInterval(timerInterval);
-        
-        // Mark as completed so it can't be resumed
-        const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        data.completed = true;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    async function finishTest() {
+    clearInterval(timerInterval);
+    
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    data.completed = true;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
+    // Show the "Sending" status
+    document.getElementById('testPage').innerHTML = "<h2>Submitting your answers... Please wait.</h2>";
+
+    // SEND TO EMAIL via Formspree
+    const response = await fetch("https://formspree.io/f/xeepkjrj", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            subject: `ESL Test Result: ${data.name}`,
+            student_info: {
+                name: data.name,
+                dob: data.dob,
+                email: data.email
+            },
+            results: data.answers // This sends the key-value pair of all 100 questions
+        })
+    });
+
+    if (response.ok) {
         document.getElementById('displayName').innerText = data.name;
         document.getElementById('testPage').classList.add('hidden');
         document.getElementById('timerDisplay').classList.add('hidden');
         document.getElementById('resultPage').classList.remove('hidden');
+    } else {
+        alert("There was an error sending the results. Please save the page as PDF manually.");
+        // Fallback to showing result page anyway
+        document.getElementById('resultPage').classList.remove('hidden');
     }
+}
 </script>
 </body>
 </html>
