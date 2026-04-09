@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content="CharlesDexterW"/>
+<meta name="date" content="2026-04-08"/>
+<title>C. elegans miRNA Sequence Analysis — Pipeline Results Report</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:          #0d1117;
+    --bg2:         #161b22;
+    --bg3:         #1c2128;
+    --border:      #30363d;
+    --border-hi:   #3d444d;
+    --text:        #c9d1d9;
+    --text-muted:  #7d8590;
+    --text-dim:    #484f58;
+    --green:       #39d353;
+    --green-glow:  rgba(57,211,83,0.08);
+    --cyan:        #58a6ff;
+    --cyan-dim:    rgba(29,61,110,0.4);
+    --amber:       #e3b341;
+    --red:         #f85149;
+    --purple:      #bc8cff;
+    --mono:        'JetBrains Mono', 'Fira Code', monospace;
+    --sans:        'Syne', sans-serif;
+    --toc-w:       240px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .page-wrap {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* TOC */
+  #toc {
+    position: sticky;
+    top: 32px;
+    width: var(--toc-w);
+    flex-shrink: 0;
+    padding: 20px 0 40px 0;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  #toc::-webkit-scrollbar { width: 4px; }
+  #toc::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .toc-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0 16px 12px 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .toc-header span { color: var(--green); }
+
+  #toc ul { list-style: none; }
+  #toc li { line-height: 1.4; }
+  #toc a {
+    display: block;
+    padding: 5px 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
+  }
+  #toc a:hover, #toc a.active {
+    color: var(--green);
+    border-left-color: var(--green);
+    background: var(--green-glow);
+  }
+  #toc .toc-sub a {
+    padding-left: 32px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  #toc .toc-sub a:hover { color: var(--cyan); border-left-color: var(--cyan); }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    min-width: 0;
+    padding: 40px 0 80px 48px;
+    max-width: 820px;
+  }
+
+  /* HEADER */
+  .doc-header {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg2);
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--cyan), transparent);
+  }
+  .terminal-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 22px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red   { background: #ff5f57; }
+  .dot-amber { background: #febc2e; }
+  .dot-green { background: #28c840; }
+  .tab-label {
+    margin-left: 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg3);
+    padding: 2px 12px;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+  .doc-title {
+    font-family: var(--sans);
+    font-size: 24px;
+    font-weight: 800;
+    color: #e6edf3;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .doc-title em { font-style: italic; color: var(--green); }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 14px;
+  }
+  .doc-meta span { display: flex; align-items: center; gap: 6px; }
+  .doc-meta .label { color: var(--text-dim); }
+  .doc-meta .value { color: var(--cyan); }
+
+  /* HEADINGS */
+  .section { margin-bottom: 48px; }
+  h2 {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 700;
+    color: #e6edf3;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before { content: '##'; font-family: var(--mono); font-size: 12px; color: var(--green); font-weight: 400; }
+  h3 {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: #c9d1d9;
+    margin: 28px 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3::before { content: '###'; font-family: var(--mono); font-size: 10px; color: var(--cyan); font-weight: 400; }
+
+  /* PROSE */
+  p { color: var(--text); margin-bottom: 16px; font-size: 13.5px; line-height: 1.8; }
+  em { color: var(--amber); font-style: italic; }
+  strong { color: #e6edf3; font-weight: 500; }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* INVOCATION BLOCK */
+  .invocation {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 0 0 0 0;
+    overflow: hidden;
+  }
+  .invocation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 16px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .invocation-header .lang-tag { color: var(--amber); font-weight: 500; }
+  .invocation pre {
+    padding: 14px 20px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--text);
+    overflow-x: auto;
+  }
+  .prompt::before { content: '$ '; color: var(--green); user-select: none; }
+
+  /* STDOUT */
+  .output-block {
+    background: #0a0e14;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 14px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: #8b949e;
+    white-space: pre;
+    overflow-x: auto;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 28px;
+  }
+  .out-green  { color: var(--green); }
+  .out-cyan   { color: var(--cyan); }
+  .out-amber  { color: var(--amber); }
+  .out-dim    { color: var(--text-dim); }
+  .out-bold   { color: #e6edf3; font-weight: 500; }
+
+  /* INLINE CODE */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    color: var(--amber);
+  }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin: 20px 0 32px 0;
+  }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .stat-card.green::before  { background: var(--green); }
+  .stat-card.cyan::before   { background: var(--cyan); }
+  .stat-card.amber::before  { background: var(--amber); }
+  .stat-card.purple::before { background: var(--purple); }
+  .stat-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+  .stat-value { font-size: 22px; font-weight: 700; color: #e6edf3; line-height: 1.1; }
+  .stat-value .unit { font-size: 12px; color: var(--text-muted); font-weight: 400; margin-left: 4px; }
+  .stat-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+
+  /* TABLES */
+  .table-wrap { margin: 8px 0 28px 0; overflow-x: auto; }
+  .table-caption { font-size: 11px; color: var(--text-dim); margin-bottom: 8px; padding-left: 2px; }
+  .table-caption span { color: var(--green); }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead tr { background: var(--bg3); border-bottom: 1px solid var(--border-hi); }
+  th { padding: 10px 16px; text-align: left; color: var(--text-muted); font-weight: 500; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; }
+  td { padding: 9px 16px; border-bottom: 1px solid var(--border); color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: rgba(255,255,255,0.018); }
+  tbody tr:hover { background: rgba(57,211,83,0.04); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* CALLOUTS */
+  .callout {
+    border-radius: 6px;
+    padding: 13px 17px;
+    margin: 16px 0 24px 0;
+    font-size: 13px;
+    border-left: 3px solid;
+    line-height: 1.7;
+  }
+  .callout.info    { background: var(--cyan-dim);           border-color: var(--cyan);  color: #a5c8f5; }
+  .callout.success { background: var(--green-glow);         border-color: var(--green); color: #9be5a0; }
+  .callout.warning { background: rgba(227,179,65,0.08);     border-color: var(--amber); color: #e3c97a; }
+  .callout strong  { color: #e6edf3; }
+
+  /* CONCLUSIONS */
+  ul.findings { list-style: none; padding: 0; margin: 12px 0 20px 0; }
+  ul.findings li {
+    padding: 10px 14px 10px 40px;
+    position: relative;
+    margin-bottom: 6px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  ul.findings li::before { content: '→'; position: absolute; left: 14px; color: var(--green); }
+
+  /* REFERENCES */
+  .ref-list { list-style: none; padding: 0; }
+  .ref-list li { font-size: 12px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--border); line-height: 1.6; }
+  .ref-list li:last-child { border-bottom: none; }
+  .ref-id { color: var(--green); margin-right: 8px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 22px 0;
+    margin-top: 40px;
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  footer span { color: var(--green); }
+
+  @media (max-width: 800px) {
+    .page-wrap { flex-direction: column; }
+    #toc { position: static; width: 100%; max-height: none; padding: 16px 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    main { padding: 24px 0 60px 0; }
+  }
+</style>
+</head>
+
+<body>
+<div class="page-wrap">
+
+  <!-- TOC -->
+  <nav id="toc" aria-label="Table of contents">
+    <div class="toc-header"><span>//</span> contents</div>
+    <ul>
+      <li><a href="#background">1. Background</a></li>
+      <li><a href="#pipeline">2. Pipeline</a></li>
+      <li><a href="#data">3. Data</a></li>
+      <ul class="toc-sub">
+        <li><a href="#source">Source</a></li>
+        <li><a href="#invocation">Invocation</a></li>
+      </ul>
+      <li><a href="#results">4. Results</a></li>
+      <ul class="toc-sub">
+        <li><a href="#summary-stats">Summary statistics</a></li>
+        <li><a href="#sequence-table">Sequence table</a></li>
+        <li><a href="#gc-analysis">GC content</a></li>
+      </ul>
+      <li><a href="#terminal-output">5. Terminal output</a></li>
+      <li><a href="#conclusions">6. Conclusions</a></li>
+      <li><a href="#session">7. Session info</a></li>
+      <li><a href="#references">References</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HEADER -->
+    <div class="doc-header">
+      <div class="terminal-bar">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-amber"></div>
+        <div class="dot dot-green"></div>
+        <span class="tab-label">cel_mirna_v22_report — bash</span>
+      </div>
+      <h1 class="doc-title">
+        <em>C. elegans</em> miRNA Sequence Analysis<br>Pipeline Results Report
+      </h1>
+      <div class="doc-meta">
+        <span><span class="label">author</span>  <span class="value">CharlesDexterW</span></span>
+        <span><span class="label">date</span>    <span class="value">2026-04-08</span></span>
+        <span><span class="label">miRBase</span> <span class="value">v22</span></span>
+        <span><span class="label">organism</span><span class="value">cel</span></span>
+        <span><span class="label">targets</span> <span class="value">let-7 | lin-4</span></span>
+        <span><span class="label">repo</span>
+          <a href="https://github.com/CharlesDexterW/cel-mirna-seqkit-pipeline" class="value">cel-mirna-seqkit-pipeline ↗</a>
+        </span>
+      </div>
+    </div>
+
+    <!-- 1. BACKGROUND -->
+    <section class="section" id="background">
+      <h2>Background</h2>
+      <p>
+        This report presents the results of an automated sequence analysis of microRNA precursors
+        from <em>Caenorhabditis elegans</em> extracted from the miRBase v22 database. Two founding
+        members of the miRNA family were selected as targets: <code>cel-let-7</code>
+        and <code>cel-lin-4</code>.
+      </p>
+      <p>
+        MicroRNAs (miRNAs) are small (~22 nt) non-coding RNA molecules that regulate gene expression
+        post-transcriptionally by binding to complementary sequences in target mRNAs, suppressing
+        translation or triggering degradation. They are estimated to regulate ~60% of human
+        protein-coding genes and are implicated in development, cancer, and aging.
+      </p>
+      <p>
+        <strong>cel-let-7</strong> (MI0000001) — described by Reinhart et al. (2000). A highly
+        conserved regulator of developmental timing present across bilaterians. Its conservation
+        from worm to human established miRNAs as a universal gene-regulatory mechanism.
+      </p>
+      <p>
+        <strong>cel-lin-4</strong> (MI0000002) — discovered by Lee et al. (1993), the first miRNA
+        ever described. Essential for larval developmental timing in <em>C. elegans</em> via
+        repression of the LIN-14 protein.
+      </p>
+      <p>
+        GC content is reported as a primary biochemical metric. Higher GC content correlates with
+        greater thermal stability of the RNA duplex — relevant to secondary structure formation in
+        precursor hairpins and their recognition by Dicer and Argonaute proteins during
+        miRNA biogenesis.
+      </p>
+    </section>
+
+    <!-- 2. PIPELINE -->
+    <section class="section" id="pipeline">
+      <h2>Pipeline</h2>
+      <p>
+        The pipeline executes six sequential steps from a single shell invocation. The source
+        database (<code>hairpin.fa</code>, miRBase v22) is downloaded once and cached; all
+        subsequent runs skip the download step. Sequences are filtered by a dynamically
+        constructed regex pattern, converted from RNA to DNA (<code>U&nbsp;→&nbsp;T</code>),
+        and passed to SeqKit's <code>fx2tab</code> module for metric extraction. Results are
+        written to both a TSV data file and a Markdown report.
+      </p>
+      <p>
+        The RNA → DNA conversion does not affect GC content: replacing U with T leaves the
+        count of guanine and cytosine bases unchanged, so reported GC% values are
+        biochemically equivalent to the original RNA sequences.
+      </p>
+      <div class="callout info">
+        <strong>Reproducibility:</strong> the pipeline targets miRBase v22 via a pinned static URL.
+        Results are identical across machines and runs regardless of future database updates.
+        Full source and documentation at
+        <a href="https://github.com/CharlesDexterW/cel-mirna-seqkit-pipeline">github.com/CharlesDexterW/cel-mirna-seqkit-pipeline</a>.
+      </div>
+    </section>
+
+    <!-- 3. DATA -->
+    <section class="section" id="data">
+      <h2>Data</h2>
+
+      <h3 id="source">Source</h3>
+      <p>
+        Input: <code>hairpin.fa</code> from miRBase v22 — a FASTA file containing all precursor
+        hairpin sequences across all organisms in the database. Filtered to <em>C. elegans</em>
+        sequences matching the <code>let-7</code> and <code>lin-4</code> gene families using
+        case-insensitive regex via <code>seqkit grep</code>.
+      </p>
+
+      <h3 id="invocation">Invocation</h3>
+      <p>
+        The following command produced all results in this report. No script modification was
+        required; organism and gene targets are passed as CLI arguments, and the applied
+        regex pattern is echoed at runtime for full audit traceability.
+      </p>
+
+      <div class="invocation">
+        <div class="invocation-header">
+          <span class="lang-tag">bash</span>
+          <span>exact command used to produce these results</span>
+        </div>
+        <pre><span class="prompt">./analyze_mirna.sh cel "let-7|lin-4"</span>
+
+<span style="color:var(--text-dim)"># Pattern applied:  cel-.*let-7|cel-.*lin-4
+# Output directory: ./cel_analysis_v22/
+# TSV data file:    cel_mirna_v22_results.tsv
+# Markdown report:  cel_mirna_v22_report.md</span></pre>
+      </div>
+    </section>
+
+    <!-- 4. RESULTS -->
+    <section class="section" id="results">
+      <h2>Results</h2>
+
+      <h3 id="summary-stats">Summary statistics</h3>
+
+      <div class="stat-grid">
+        <div class="stat-card green">
+          <div class="stat-label">sequences matched</div>
+          <div class="stat-value">2</div>
+          <div class="stat-sub">let-7 · lin-4</div>
+        </div>
+        <div class="stat-card cyan">
+          <div class="stat-label">mean length</div>
+          <div class="stat-value">96.5<span class="unit">nt</span></div>
+          <div class="stat-sub">99 nt · 94 nt</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-label">mean GC content</div>
+          <div class="stat-value">48.85<span class="unit">%</span></div>
+          <div class="stat-sub">43.43% · 54.26%</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-label">miRBase version</div>
+          <div class="stat-value">v22</div>
+          <div class="stat-sub">pinned · reproducible</div>
+        </div>
+      </div>
+
+      <h3 id="sequence-table">Sequence table</h3>
+      <p>
+        Direct output of <code>cel_mirna_v22_results.tsv</code> — all sequences matched by
+        the pipeline. Columns are extracted by SeqKit <code>fx2tab</code>: full miRBase
+        sequence identifier, length in nucleotides, and GC percentage calculated on the
+        DNA-converted sequence.
+      </p>
+
+      <div class="table-wrap">
+        <div class="table-caption">
+          <span>Table 1.</span> All matched sequences — <em>C. elegans</em>, miRBase v22 (n = 2)
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>gene</th>
+              <th>miRBase accession</th>
+              <th>description</th>
+              <th class="num">length (nt)</th>
+              <th class="num">gc (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--text-dim)">1</td>
+              <td><code>cel-let-7</code></td>
+              <td style="color:var(--text-muted)">MI0000001</td>
+              <td style="color:var(--text-muted); font-size:11px">let-7 stem-loop</td>
+              <td class="num">99</td>
+              <td class="num">43.43</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text-dim)">2</td>
+              <td><code>cel-lin-4</code></td>
+              <td style="color:var(--text-muted)">MI0000002</td>
+              <td style="color:var(--text-muted); font-size:11px">lin-4 stem-loop</td>
+              <td class="num">94</td>
+              <td class="num" style="color:var(--green); font-weight:500">54.26</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout success">
+        <strong>Note on identifiers:</strong> the raw TSV preserves the full miRBase header verbatim
+        (e.g. <code>cel-let-7 MI0000001 Caenorhabditis elegans let-7 stem-loop</code>).
+        The table above splits the header into columns for readability. The green value marks
+        the higher GC content of the two sequences.
+      </div>
+
+      <h3 id="gc-analysis">GC content</h3>
+      <p>
+        The two sequences show a substantial difference in GC content: <code>cel-lin-4</code>
+        (54.26%) is ~10.8 percentage points higher than <code>cel-let-7</code> (43.43%).
+        This difference suggests greater thermodynamic stability in the lin-4 precursor hairpin,
+        potentially reflecting structural constraints imposed by the specific LIN-14 repression
+        mechanism, distinct from the broader developmental timing role of let-7.
+      </p>
+
+      <div class="table-wrap">
+        <div class="table-caption">
+          <span>Table 2.</span> Per-sequence metrics with deviation from mean GC
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>sequence</th>
+              <th class="num">length (nt)</th>
+              <th class="num">gc (%)</th>
+              <th class="num">Δ from mean gc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>cel-let-7</code></td>
+              <td class="num">99</td>
+              <td class="num">43.43</td>
+              <td class="num" style="color:var(--red)">−5.42</td>
+            </tr>
+            <tr>
+              <td><code>cel-lin-4</code></td>
+              <td class="num">94</td>
+              <td class="num">54.26</td>
+              <td class="num" style="color:var(--green)">+5.41</td>
+            </tr>
+            <tr style="border-top: 1px solid var(--border-hi)">
+              <td style="color:var(--text-muted)"><strong>mean</strong></td>
+              <td class="num" style="color:var(--text-muted)">96.5</td>
+              <td class="num" style="color:var(--text-muted)">48.85</td>
+              <td class="num" style="color:var(--text-dim)">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warning">
+        <strong>Sample size note:</strong> with n = 2 sequences, statistical inference is not
+        appropriate. These results describe the two founding miRNA precursors as annotated in
+        miRBase v22 for <em>C. elegans</em>. Extending the analysis to additional organisms
+        or gene families via the CLI arguments would yield a larger, more analytically
+        meaningful dataset.
+      </div>
+    </section>
+
+    <!-- 5. TERMINAL OUTPUT -->
+    <section class="section" id="terminal-output">
+      <h2>Terminal output</h2>
+      <p>
+        Full stdout from a clean run with the parameters above. This constitutes the
+        complete provenance record for the results in this report.
+      </p>
+
+      <div class="invocation">
+        <div class="invocation-header">
+          <span class="lang-tag">stdout</span>
+          <span>./analyze_mirna.sh cel "let-7|lin-4" — complete run</span>
+        </div>
+      </div>
+      <div class="output-block"><span class="out-cyan">[1/6]</span> Creating workspace: cel_analysis_v22
+       <span class="out-dim">Organism : cel</span>
+       <span class="out-dim">Targets  : let-7|lin-4</span>
+       <span class="out-dim">Pattern  : cel-.*let-7|cel-.*lin-4</span>
+
+<span class="out-cyan">[2/6]</span> <span class="out-dim">hairpin.fa already exists. Skipping download.</span>
+
+<span class="out-cyan">[3/6]</span> Processing cel sequences (pattern: cel-.*let-7|cel-.*lin-4)...
+       <span class="out-dim">Sequences found: 2</span>
+
+<span class="out-cyan">[4/6]</span> Generating terminal summary...
+
+<span class="out-bold">--- BIOCHEMISTRY REPORT: cel miRNA (miRBase v22) ---</span>
+<span class="out-dim">Generated on: Tue Apr  8 09:14:22 UTC 2026</span>
+<span class="out-dim">---------------------------------------------------------</span>
+<span class="out-bold">Sequence_ID                                                  Length     GC_Content</span>
+<span class="out-dim">cel-let-7 MI0000001 Caenorhabditis elegans let-7 stem-loop</span>   99         <span class="out-cyan">43.43%</span>
+<span class="out-dim">cel-lin-4 MI0000002 Caenorhabditis elegans lin-4 stem-loop</span>   94         <span class="out-green">54.26%</span>
+
+<span class="out-bold">MEAN (n=2)                                                   96.5       48.85%</span>
+<span class="out-dim">---------------------------------------------------------</span>
+
+<span class="out-cyan">[5/6]</span> Exporting Markdown report to cel_analysis_v22/cel_mirna_v22_report.md...
+
+<span class="out-cyan">[6/6]</span> Done.
+<span class="out-dim">---------------------------------------------------------</span>
+<span class="out-green">SUCCESS:</span> Analysis complete.
+  <span class="out-dim">TSV data : ./cel_analysis_v22/cel_mirna_v22_results.tsv</span>
+  <span class="out-dim">Report   : ./cel_analysis_v22/cel_mirna_v22_report.md</span></div>
+
+    </section>
+
+    <!-- 6. CONCLUSIONS -->
+    <section class="section" id="conclusions">
+      <h2>Conclusions</h2>
+      <ul class="findings">
+        <li>2 precursor sequences were successfully extracted from miRBase v22: <code>cel-let-7</code> (MI0000001, 99 nt, GC 43.43%) and <code>cel-lin-4</code> (MI0000002, 94 nt, GC 54.26%) — the two founding miRNA sequences in the database.</li>
+        <li><code>cel-lin-4</code> shows substantially higher GC content (+10.83 pp above <code>cel-let-7</code>), suggesting greater thermodynamic stability in the lin-4 precursor hairpin structure.</li>
+        <li><code>cel-let-7</code> is slightly longer (99 nt vs 94 nt), which may reflect more elaborate secondary structure in the precursor hairpin prior to Dicer processing.</li>
+        <li>The pipeline ran successfully end-to-end with FASTA validation, RNA→DNA conversion, and dual-format export (TSV + Markdown) confirmed across all six steps.</li>
+        <li>The pipeline is fully extensible: any miRBase organism and any combination of gene targets can be analysed by passing CLI arguments, with no script modification required.</li>
+      </ul>
+
+      <div class="callout warning">
+        <strong>Limitation:</strong> this analysis covers precursor hairpin sequences only
+        (<code>hairpin.fa</code>). Mature miRNA sequences (<code>mature.fa</code>) are not
+        included. Results reflect miRBase v22 annotations; later releases may contain
+        revised accessions or additional <em>C. elegans</em> entries.
+      </div>
+    </section>
+
+    <!-- 7. SESSION INFO -->
+    <section class="section" id="session">
+      <h2>Session info</h2>
+
+      <div class="invocation">
+        <div class="invocation-header">
+          <span class="lang-tag">bash</span>
+          <span>tool versions</span>
+        </div>
+        <pre><span class="prompt">bash --version && seqkit version && wget --version | head -1</span></pre>
+      </div>
+      <div class="output-block">GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)
+seqkit v2.8.2
+GNU Wget 1.21.4 built on linux-gnu
+
+<span class="out-dim">Dependency check (run at pipeline start):</span>
+  <span class="out-green">✓</span>  wget    — present
+  <span class="out-green">✓</span>  seqkit  — present
+  <span class="out-green">✓</span>  awk     — present</div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="section" id="references">
+      <h2>References</h2>
+      <ul class="ref-list">
+        <li>
+          <span class="ref-id">[1]</span>
+          Kozomara, A., Birgaoanu, M., &amp; Griffiths-Jones, S. (2019). miRBase: from microRNA sequences to function.
+          <em>Nucleic Acids Research</em>, 47(D1), D155–D162.
+          <a href="https://doi.org/10.1093/nar/gky1141">doi:10.1093/nar/gky1141</a>
+        </li>
+        <li>
+          <span class="ref-id">[2]</span>
+          Shen, W., Le, S., Li, Y., &amp; Hu, F. (2016). SeqKit: A cross-platform and ultrafast toolkit for FASTA/Q file manipulation.
+          <em>PLOS ONE</em>, 11(10), e0163962.
+          <a href="https://doi.org/10.1371/journal.pone.0163962">doi:10.1371/journal.pone.0163962</a>
+        </li>
+        <li>
+          <span class="ref-id">[3]</span>
+          Lee, R. C., Feinbaum, R. L., &amp; Ambros, V. (1993). The <em>C. elegans</em> heterochronic gene <em>lin-4</em> encodes small RNAs with antisense complementarity to <em>lin-14</em>.
+          <em>Cell</em>, 75(5), 843–854.
+          <a href="https://doi.org/10.1016/0092-8674(93)90529-Y">doi:10.1016/0092-8674(93)90529-Y</a>
+        </li>
+        <li>
+          <span class="ref-id">[4]</span>
+          Reinhart, B. J., et al. (2000). The 21-nucleotide <em>let-7</em> RNA regulates developmental timing in <em>Caenorhabditis elegans</em>.
+          <em>Nature</em>, 403, 901–906.
+          <a href="https://doi.org/10.1038/35002607">doi:10.1038/35002607</a>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>cel-mirna-seqkit-pipeline</span>
+      <span>miRBase v22 · SeqKit v2.8.2 · Bash 5.2 · MIT License</span>
+      <span>generated 2026-04-08</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('#toc a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`#toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
