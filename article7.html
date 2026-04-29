@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The silent reservoir: phages, resistance genes, and the environment | Benjamín Garcés</title>
+  <link rel="icon" href="images/cell.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e; --muted: #5a5a7a; --accent: #2c5f6e; --accent-light: #8e8ad4;
+      --bg: #fafaf8; --surface: #f2f1ee; --border: #e0deda; --white: #ffffff;
+      --warn: #7a4a1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.8; font-size: 17px; }
+
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 48px;
+      background: rgba(250,250,248,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+    }
+    .topbar-name { font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--accent); text-decoration: none; }
+    .lang-toggle { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 2px; gap: 2px; }
+    .lang-btn { padding: 0.2rem 0.7rem; border-radius: 2rem; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 0.73rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; color: var(--muted); transition: background 0.2s, color 0.2s; }
+    .lang-btn.active { background: var(--accent); color: var(--white); }
+
+    .article-wrap { max-width: 740px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .tag { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 0.2rem 0.75rem; font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
+    .deck { font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; font-weight: 300; }
+
+    .byline { font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+
+    .hero-img { width: 100%; border-radius: 10px; margin-bottom: 0.75rem; }
+    .img-caption { font-size: 0.78rem; color: var(--muted); text-align: center; margin-bottom: 2.5rem; font-style: italic; }
+
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); margin: 2.5rem 0 1rem; }
+    h3 { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--accent); margin: 1.8rem 0 0.6rem; }
+
+    p { margin-bottom: 1.2rem; text-align: justify; }
+
+    .callout {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 2rem 0;
+      font-style: italic; color: var(--muted);
+    }
+    .callout cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.82rem; font-weight: 500; color: var(--accent); }
+
+    .warn-box {
+      border-left: 3px solid #9a5a1a; background: #fdf5ec;
+      padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 2rem 0;
+    }
+    .warn-box p { color: var(--warn); margin-bottom: 0; }
+    .warn-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9a5a1a; margin-bottom: 0.4rem; }
+
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-size: 0.88rem; }
+    th { background: var(--surface); padding: 0.65rem 1rem; text-align: left; font-weight: 500; border-bottom: 2px solid var(--border); }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+
+    .sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .sources h2 { font-size: 1rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--muted); margin-bottom: 1rem; }
+    .sources ol { padding-left: 1.2rem; }
+    .sources li { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; line-height: 1.5; }
+
+    .footer-cc { margin-top: 2.5rem; font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .footer-cc a { color: var(--muted); }
+
+    [data-lang] { display: none; }
+    .lang-en [data-lang="en"] { display: block; }
+    .lang-es [data-lang="es"] { display: block; }
+    span[data-lang] { display: none; }
+    .lang-en span[data-lang="en"] { display: inline; }
+    .lang-es span[data-lang="es"] { display: inline; }
+
+    @media (max-width: 600px) {
+      .article-wrap { padding: 4rem 1.25rem 3rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<div class="topbar">
+  <a href="https://charlesdexterw.github.io/BGC/" class="topbar-name">Benjamin Garcés C.</a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="breadcrumb">
+    <a href="https://charlesdexterw.github.io/BGC/">← Home</a>
+    <span>/</span>
+    <a href="https://charlesdexterw.github.io/BGC/#scicomm">
+      <span data-lang="en">Science communication</span>
+      <span data-lang="es">Comunicación científica</span>
+    </a>
+    <span>/</span>
+    <span data-lang="en">The silent reservoir — phages, resistance genes, and the environment</span>
+    <span data-lang="es">El reservorio silencioso — fagos, genes de resistencia y el ambiente</span>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag" data-lang="en">Microbiology</span>
+    <span class="tag" data-lang="es">Microbiología</span>
+    <span class="tag" data-lang="en">Antibiotic resistance</span>
+    <span class="tag" data-lang="es">Resistencia antibiótica</span>
+    <span class="tag" data-lang="en">Environmental health</span>
+    <span class="tag" data-lang="es">Salud ambiental</span>
+    <span class="tag" data-lang="en">Sci-comm</span>
+    <span class="tag" data-lang="es">Divulgación</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ ENGLISH -->
+  <div data-lang="en">
+
+    <h1>The silent reservoir: phages, resistance genes, and the world outside the clinic</h1>
+    <p class="deck">Antibiotic resistance genes do not live only in hospitals. They persist in rivers, soils, wastewater plants, and the air — and bacteriophages are quietly moving them between worlds.</p>
+    <div class="byline">By Benjamín Garcés C. · April 2026 · ~10 min read</div>
+
+    <img class="hero-img" src="https://charlesdexterw.github.io/BGC/images/phage_resistant_bac.png" alt="Bacteriophage and bacterial cell illustration">
+    <p class="img-caption">Bacteriophages are the most abundant biological entities on Earth — and, as it turns out, significant carriers of antibiotic resistance genes across environmental compartments. Image generated by AI.</p>
+
+    <p>In my previous articles I have written about phage therapy — the use of bacteriophages to fight antibiotic-resistant bacterial infections — and about the risks and regulatory challenges that come with deploying living, evolving agents as medicine. But phages do something else that doesn't usually appear in the news: they move antibiotic resistance genes (ARGs) through the environment at a scale we are only beginning to understand.</p>
+
+    <p>This article is about that other story. relatively far from the clinic. It's about the wastewater treatment plant discharging into the river downstream, the agricultural soil saturated with pesticide runoff, the invisible underground ecosystem running beneath every city. It is about the silent reservoir of resistance that exists outside any hospital, and the role phages play in keeping that reservoir connected to the pathogens that would eventually reach patients.</p>
+
+    <h2>Resistance genes have an environmental life of their own</h2>
+
+    <p>The standard narrative of antibiotic resistance goes something like this: a patient receives antibiotics, bacteria in their body develop resistance, those resistant bacteria spread person to person. This is true, but it is only part of the story.</p>
+
+    <p>Antibiotic resistance genes have been present in microbial communities for millions of years — long before human-synthetized antibiotics existed. What has changed is the selection pressure: decades of antibiotic use in medicine, agriculture, and food production have dramatically enriched the pool of resistance genes circulating in bacteria everywhere. The result is what researchers call the <em>environmental resistome</em> — the full collection of resistance genes distributed across all microorganisms in a given environment, including the vast majority that will not cause any human disease at all.</p>
+
+    <p>When researchers sample wastewater treatment plants, rivers receiving treated effluent, agricultural soils, or even urban air, they consistently find ARGs. These genes appear in commensals — harmless bacteria that live alongside us and in the environment without causing harm. They appear in bacteria associated with farm animals, in sediments, and in drinking water sources. Their presence does not mean a patient will immediately become ill. It means there is a standing reservoir of resistance potential that, under the right conditions, can transfer into pathogens.</p>
+
+    <div class="callout">
+      Antibiotic resistance genes have been detected in environments ranging from hospital wastewater to remote soil and urban air — a distribution that makes purely clinical management of resistance fundamentally insufficient.
+      <cite>Larsson &amp; Flach (2021); Calero-Cáceres et al. (2019)</cite>
+    </div>
+
+    <h2>Three states of resistance — and what they mean</h2>
+
+    <p>One way to read the environmental resistome is through a three-state framework, each reflecting a different degree of risk and mobility.</p>
+
+    <h3>State one: ARGs found only in bacteria</h3>
+
+    <p>When resistance genes appear exclusively in the bacterial fraction of an environmental sample — not in any associated viral particles — it indicates an established, integrated resistome. The genes are there, stable, part of the microbial community. They are not actively moving. This is the baseline condition of many human gut microbiomes, wastewater treatment plants, and food-processing environments: a reservoir that exists, persists, and waits.</p>
+
+    <h3>State two: ARGs found in both bacteria and phages</h3>
+
+    <p>When the same resistance gene appears in both the bacterial metagenome and the viral (phage) fraction of the same sample, something more dynamic is happening. Co-occurrence is an operational marker of horizontal gene transfer — the process by which bacteria pass genetic material to each other, and to which phages contribute as mobile vehicles. The gene is not just sitting there; it is, or recently was, on transit.</p>
+
+    <p>The mechanisms are well-characterized. In <em>generalized transduction</em>, a phage accidentally packages a fragment of bacterial DNA — including any ARGs it happens to contain — and delivers it to the next bacterium it infects. In <em>specialized transduction</em>, a phage that has integrated itself into a bacterial chromosome excises imprecisely and takes flanking genes with it. And then there are <em>phage-plasmids</em> — hybrid genetic elements that function simultaneously as phages and as self-replicating plasmids, often carrying multiple resistance genes and spreading them through cycles of infection and integration.</p>
+
+    <p>A critical methodological note: not every ARG detected in a phage fraction is genuinely phage-encoded. Some detections reflect bacterial DNA accidentally packaged into phage capsids during the lysis process. Distinguishing real phage-encoded genes from packaged hitchhikers requires stringent bioinformatic thresholds and, ideally, functional validation — expressing the gene in a recipient organism and confirming that it actually confers resistance. Studies that skip this step tend to overestimate how many resistance genes phages truly carry.</p>
+
+    <h3>State three: ARGs found only in phages</h3>
+
+    <p>The most unsettling state is when resistance genes appear in the phage fraction but not in any sampled bacteria. These are latent genes — not currently causing resistance in any local bacterial population, but present, mobile, and waiting for the right host. They have been detected in rivers, wastewater, marine sediments, fresh vegetables, soil, and even in airborne particulate matter from urban environments. They are, in the most literal sense, everywhere.</p>
+
+    <p>The latent reservoir matters because phages are not passive containers. They actively seek out and infect bacteria. A phage carrying a resistance gene will eventually find a susceptible bacterial host — and if that host happens to be a pathogen, or if it passes the gene to one through subsequent transfer events, the gene's latency ends.</p>
+
+    <div class="warn-box">
+      <p class="warn-label">The gap in surveillance</p>
+      <p>Environmental surveillance programs for antibiotic resistance almost universally focus on bacterial isolates. The phage fraction — where latent ARGs accumulate and from which they can be mobilized into new bacterial hosts — is largely absent from routine monitoring. This is a structural blind spot in how we track the spread of resistance.</p>
+    </div>
+
+    <h2>The places where mobilization happens</h2>
+
+    <p>Genes do not move on their own. The transition from latent phage-borne ARG to active resistance in a pathogen requires specific conditions: a phage that encounters a susceptible bacterial host, a successful infection event, integration of the transferred gene, and selection pressure that favors its retention. Understanding which environments create these conditions is central to risk assessment.</p>
+
+    <h3>Wastewater treatment plants</h3>
+
+    <p>Wastewater treatment plants are probably the most thoroughly studied environmental hotspot for ARG mobilization. They concentrate antibiotic residues, resistant bacteria from clinical and agricultural sources, bacteriophages, and mobile genetic elements in a single, dense microbial community — exactly the conditions that favor horizontal gene transfer. Despite treatment, ARGs persist in effluent, and the evidence increasingly points to these plants not merely as conduits for resistance, but as evolutionary incubators where mobile ARGs actively emerge and diversify (Larsson &amp; Flach, 2021).</p>
+
+    <h3>Agricultural soils</h3>
+
+    <p>Agricultural soils receive antibiotics through veterinary use, animal manure, and irrigation with treated wastewater. Research has shown that combined chemical stressors — pesticides, nitrogen deposition, and heavy metals acting simultaneously — amplify phage-encoded ARG abundance far beyond what any single stressor produces, a pattern consistent across both field surveys and controlled experiments (Calero-Cáceres et al., 2019). This matters because modern agricultural practice rarely involves single stressors.</p>
+
+    <h3>The plastisphere</h3>
+
+    <p>Microplastics have created a new ecological niche with no evolutionary precedent: the <em>plastisphere</em>, the biofilm community that colonizes plastic surfaces in aquatic environments. This surface provides ideal conditions for phage–host encounters — dense, structurally complex, and chemically distinct from surrounding water. Recent work has further shown that nanomaterials such as silver nanoparticles, released from consumer goods into aquatic systems, increase membrane permeability in bacteria and facilitate phage adsorption and DNA uptake, accelerating ARG transfer in ways that compound the plastisphere risk (Calero-Cáceres et al., 2019).</p>
+
+    <h3>Air</h3>
+
+    <p>Perhaps the least expected finding in recent ARG research is atmospheric dissemination. ARG-carrying phages have now been documented in urban airborne particulate matter, with dense transit environments — bus stations and metro hubs — emerging as particular concentration points. The mechanisms are not fully characterized, but the implication is clear: the physical separation between environmental ARG reservoirs and human exposure is smaller than previously assumed, and the routes of exposure are more varied than water and soil alone (Larsson &amp; Flach, 2021).</p>
+
+    <h2>Why chemical pollution is the accelerator</h2>
+
+    <p>The environmental resistome would be a manageable problem if it were static. It is not. Anthropogenic chemical inputs act as accelerators, pushing resistance genes from the latent reservoir into active circulation.</p>
+
+    <p>Antibiotic residues — from clinical prescription, veterinary use, and manufacturing discharge — are the best-documented driver. Subinhibitory concentrations of antibiotics induce the bacterial SOS stress response, which in turn triggers prophage induction: dormant phages integrated in bacterial chromosomes activate, replicate, and lyse their hosts, releasing particles that may carry ARGs into the environment. Liao et al. (2024) demonstrated this at global scale, showing that prophage-encoded ARGs are systematically enriched in human-impacted environments relative to pristine ones — a direct fingerprint of the selection-induction feedback across dozens of ecosystem types.</p>
+
+    <p>Beyond antibiotics, the picture is more complex than it used to be. Heavy metals co-select for resistance. TiO₂ — a common component of sunscreens, paints, and food colorings — promotes phage-transduction-mediated resistance transfer when activated by UV light. Pesticides, in combination with atmospheric nitrogen deposition, create soil conditions that amplify phage-encoded ARG abundance. These are not exotic exposures; they are features of ordinary industrial and agricultural activity.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Driver</th>
+          <th>Mechanism</th>
+          <th>Key finding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Antibiotic residues</td>
+          <td>SOS signal induction → prophage activation → transduction</td>
+          <td>Prophage ARGs enriched in all human-impacted environments vs. pristine sites (Liao et al., 2024)</td>
+        </tr>
+        <tr>
+          <td>Pesticides, heavy metals, nitrogen deposition</td>
+          <td>Combined chemical stress amplifies phage ARG abundance; co-selection for resistance</td>
+          <td>Identified as key mobilization drivers across soil and aquatic systems (Calero-Cáceres et al., 2019)</td>
+        </tr>
+        <tr>
+          <td>Nanomaterials (e.g. silver nanoparticles)</td>
+          <td>Membrane disruption → increased phage adsorption and DNA uptake</td>
+          <td>Emerging chemical co-driver in aquatic environments (Calero-Cáceres et al., 2019)</td>
+        </tr>
+        <tr>
+          <td>TiO₂ photoexcitation</td>
+          <td>Reactive oxygen species promote phage-mediated gene transfer under UV</td>
+          <td>Part of the broader anthropogenic chemical pollution landscape (Larsson &amp; Flach, 2021)</td>
+        </tr>
+        <tr>
+          <td>Microplastics / plastisphere</td>
+          <td>Biofilm surface enriches phage–host encounters; amplifies spread</td>
+          <td>Novel ecological niche with no evolutionary precedent (Larsson &amp; Flach, 2021)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>The phage paradox — and what it means for phage therapy</h2>
+
+    <p>If you have read my previous article on phage therapy, you may notice certain tension here. Phages are being developed as a solution to antibiotic resistance — and simultaneously implicated as a vehicle for spreading resistance genes. Both things are true, and understanding why requires holding two realities at once.</p>
+
+    <p>The phages being developed for therapy are carefully selected, strictly lytic (they kill bacteria rather than integrating into them), and subjected to full genomic screening to confirm the absence of resistance genes, lysogeny-associated sequences, and virulence factors. The GA23 case I described in my previous article — a phage isolated, sequenced on both Nanopore and Illumina platforms, and confirmed clean before any in vivo testing — represents exactly this approach.</p>
+
+    <p>The phages moving ARGs through the environment aren't mostly the same kind of phages. They are the vast, poorly characterized diversity of wild phages in wastewater, soil, and water — temperate phages that integrate rather than kill, phages that co-evolved with their bacterial hosts over billions of years and accumulated an extraordinary range of mobile genetic cargo. The therapeutic and the environmental are different populations, selected for different properties.</p>
+
+    <p>But the tension does not disappear entirely. Therapeutic phage preparations, if deployed at clinical scale, enter the same environmental cycles. Patients excrete phages. Healthcare waste enters treatment systems. Manufacturing discharge reaches waterways. The genomic cleanliness of a therapeutic phage is a prerequisite — not a guarantee that it will have no environmental footprint at scale. This is one reason why surveillance infrastructure matters for phage therapy not just as a clinical monitoring tool, but as an environmental one.</p>
+
+    <h2>What a serious response looks like</h2>
+
+    <p>The antibiotic resistance crisis was not primarily a failure of science. The molecules worked. It was a failure of the systems around the science: inadequate surveillance, misaligned economic incentives, regulatory frameworks that could not keep pace with how resistance evolved, and a persistent tendency to treat a dynamic biological problem as a static engineering one.</p>
+
+    <p>The environmental resistome presents the same structural challenge. The science is clear enough: phages carry ARGs, chemical pollution accelerates their mobilization, human-impacted environments are hotspots, and the surveillance systems that would detect emerging risk in real time largely do not exist for the viral fraction of environmental samples. What remains is the harder problem of building the institutions and infrastructure to act on that knowledge.</p>
+
+    <p>That means extending environmental monitoring programs to include the phage fraction alongside bacterial isolates. It means applying genomic characterization — the kind routinely performed for therapeutic candidates — to environmental phage populations in high-risk sites like WWTPs, hospital effluent discharge zones, and intensive agricultural areas. It means treating chemical pollution reduction not just as an environmental protection measure but as an antibiotic resistance intervention.</p>
+
+    <p>And it means recognizing that the clinic and the environment are not separate systems. The resistance genes that emerge in a patient five years from now are circulating in a river, a soil column, or a transit hub air sample today. The distance between those two points is shorter than our surveillance infrastructure currently acknowledges — and closing that gap is work that cannot wait for the crisis to become impossible to ignore.</p>
+
+    <div class="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li>Larsson, D. G. J., &amp; Flach, C.-F. (2021). Antibiotic resistance in the environment. <em>Nature Reviews Microbiology</em>, 20, 257–269. https://doi.org/10.1038/s41579-021-00649-x</li>
+        <li>Calero-Cáceres, W., Ye, M., &amp; Balcázar, J. L. (2019). Bacteriophages as Environmental Reservoirs of Antibiotic Resistance. <em>Trends in Microbiology</em>, 27(7), 570–577. https://doi.org/10.1016/j.tim.2019.02.008</li>
+        <li>Liao, H., Liu, C., Zhou, S., et al. (2024). Prophage-encoded antibiotic resistance genes are enriched in human-impacted environments. <em>Nature Communications</em>, 15. https://doi.org/10.1038/s41467-024-52450-y</li>
+      </ol>
+    </div>
+
+    <div class="footer-cc">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0; height:22px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+      </a>
+      <span>© 2026 Benjamín Garcés C. — Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span>
+    </div>
+
+  </div><!-- end EN -->
+  <!-- ═══════════════════════════════════════════════════════════════ SPANISH -->
+  <div data-lang="es">
+
+    <h1>El reservorio silencioso: fagos, genes de resistencia y el mundo fuera de la clínica</h1>
+    <p class="deck">Los genes de resistencia a antibióticos no viven solo en los hospitales. Persisten en ríos, suelos, plantas de tratamiento de aguas residuales y el aire — y los bacteriófagos los están moviendo silenciosamente entre estos mundos.</p>
+    <div class="byline">Por Benjamín Garcés C. · Abril 2026 · ~10 min de lectura</div>
+
+    <img class="hero-img" src="https://charlesdexterw.github.io/BGC/images/phage_resistant_bac.png" alt="Ilustración de bacteriófago y célula bacteriana">
+    <p class="img-caption">Los bacteriófagos son las entidades biológicas más abundantes del planeta — y, como resulta, portadores significativos de genes de resistencia a antibióticos entre compartimentos ambientales. Imagen generada por IA.</p>
+
+    <p>En artículos anteriores escribí sobre la terapia de fagos — el uso de bacteriófagos para combatir infecciones bacterianas resistentes a antibióticos — y sobre los riesgos y los desafíos regulatorios que implica desplegar ESTOS agentes vivos y en evolución como tratamientos médicos. Pero los fagos hacen algo más que no suele aparecer en las noticias: mueven genes de resistencia a antibióticos (ARGs, por sus siglas en inglés) a través del ambiente a una escala que apenas estamos empezando a comprender.</p>
+
+    <p>Este artículo trata sobre esa otra historia. No es sobre la clínica. Es sobre la planta de tratamiento de aguas residuales que descarga en el río aguas abajo, el suelo agrícola saturado de escorrentía de pesticidas, el aire urbano estancado en una estación de transporte masivo. Es sobre el reservorio silencioso de resistencia que existe fuera de cualquier hospital, y el papel que juegan los fagos en mantener ese reservorio conectado con los patógenos que eventualmente llegarán a los pacientes.</p>
+
+    <h2>Los genes de resistencia tienen una vida ambiental propia</h2>
+
+    <p>La narrativa estándar de la resistencia a antibióticos es más o menos esta: un paciente recibe antibióticos, las bacterias en su cuerpo desarrollan resistencia, esas bacterias resistentes se propagan de persona a persona. Esto es cierto, pero es solo una parte de la historia.</p>
+
+    <p>Los genes de resistencia a antibióticos han estado presentes en las comunidades microbianas durante millones de años — mucho antes de que existieran los antibióticos sintetizados por los seres humanos. Lo que ha cambiado es la presión selectiva: décadas de uso de antibióticos en medicina, agricultura y producción alimentaria han enriquecido dramáticamente el reservorio de genes de resistencia que circulan en bacterias de todos los entornos. El resultado es lo que los investigadores llaman el <em>resistoma ambiental</em> — la colección completa de genes de resistencia distribuidos entre todos los microorganismos de un ambiente dado, incluida la gran mayoría que nunca causará enfermedad humana alguna.</p>
+
+    <p>Cuando los investigadores muestrean plantas de tratamiento de aguas residuales, ríos que reciben efluentes tratados, suelos agrícolas, o incluso el aire urbano, encuentran ARGs de manera consistente. Estos genes aparecen en comensales — bacterias inofensivas que viven junto a nosotros y en el ambiente sin causar daño. Aparecen en bacterias asociadas a animales de granja, en sedimentos y en fuentes de agua potable. Su presencia no significa que un paciente vaya a enfermarse de inmediato. Significa que existe un reservorio permanente de potencial de resistencia que, bajo las condiciones adecuadas, puede transferirse hacia los patógenos.</p>
+
+    <div class="callout">
+      Los genes de resistencia a antibióticos han sido detectados en entornos que van desde las aguas residuales hospitalarias hasta suelos remotos y aire urbano — una distribución que hace fundamentalmente insuficiente el manejo puramente clínico de la resistencia a antibioticos.
+      <cite>Larsson &amp; Flach (2021); Calero-Cáceres et al. (2019)</cite>
+    </div>
+
+    <h2>Tres estados de la resistencia — y lo que significan</h2>
+
+    <p>Una forma de leer el resistoma ambiental es a través de un marco de tres estados, cada uno reflejando un grado diferente de riesgo y movilidad.</p>
+
+    <h3>Estado uno: ARGs encontrados solo en bacterias</h3>
+
+    <p>Cuando los genes de resistencia aparecen exclusivamente en la fracción bacteriana de una muestra ambiental — no en ninguna partícula viral asociada — indica un resistoma establecido e integrado. Los genes están ahí, estables, como parte de la comunidad microbiana. No se están moviendo activamente. Esta es la condición basal de muchos microbiomas del intestino humano, plantas de tratamiento de aguas residuales y entornos de procesamiento de alimentos: un reservorio que existe, persiste y espera.</p>
+
+    <h3>Estado dos: ARGs encontrados tanto en bacterias como en fagos</h3>
+
+    <p>Cuando el mismo gen de resistencia aparece tanto en el metagenoma bacteriano como en la fracción viral (de fagos) de la misma muestra, algo más dinámico está ocurriendo. La co-ocurrencia es un marcador operativo de transferencia horizontal de genes — el proceso mediante el cual las bacterias intercambian material genético entre sí, y al que los fagos contribuyen como vehículos móviles. El gen no está simplemente ahí; está, o recientemente estuvo, en tránsito.</p>
+
+    <p>Los mecanismos están bien caracterizados. En la <em>transducción generalizada</em>, un fago empaqueta accidentalmente un fragmento de ADN bacteriano — incluidos cualquier ARG que contenga — y lo entrega a la siguiente bacteria que infecta. En la <em>transducción especializada</em>, un fago que se ha integrado en el cromosoma bacteriano se escinde de forma imprecisa y se lleva consigo genes flanqueantes. Y luego están los <em>fagos-plásmidos</em> — elementos genéticos híbridos que funcionan simultáneamente como fagos y como plásmidos autorreplicantes, cargando a menudo múltiples genes de resistencia y diseminándolos mediante ciclos de infección e integración.</p>
+
+    <p>Una nota metodológica importante: no todo ARG detectado en la fracción de fagos es genuinamente codificado por el fago. Algunas detecciones reflejan ADN bacteriano empaquetado accidentalmente en cápsides fagémicas durante el proceso de lisis. Distinguir genes verdaderamente codificados por fagos de pasajeros accidentales requiere umbrales bioinformáticos rigurosos e, idealmente, validación funcional — expresar el gen en un organismo receptor y confirmar que confiere resistencia. Los estudios que omiten este paso tienden a sobrestimar cuántos genes de resistencia portan realmente los fagos.</p>
+
+    <h3>Estado tres: ARGs encontrados solo en fagos</h3>
+
+    <p>El estado más inquietante es cuando los genes de resistencia aparecen en la fracción de fagos pero no en ninguna bacteria de la muestra. Estos son genes latentes — que actualmente no causan resistencia en ninguna población bacteriana local, pero que están presentes, son móviles y esperan al huésped adecuado. Han sido detectados en ríos, aguas residuales, sedimentos marinos, verduras frescas, suelos e incluso en material particulado atmosférico de entornos urbanos. Son, en el sentido más literal, ubicuos.</p>
+
+    <p>El reservorio latente importa porque los fagos no son contenedores pasivos. Buscan activamente e infectan bacterias. Un fago portador de un gen de resistencia eventualmente encontrará un huésped bacteriano susceptible — y si ese huésped resulta ser un patógeno, o si transfiere el gen a uno mediante eventos de transferencia posteriores, la latencia del gen termina.</p>
+
+    <div class="warn-box">
+      <p class="warn-label">El vacío en la vigilancia</p>
+      <p>Los programas de vigilancia ambiental de resistencia antibiótica se centran casi universalmente en aislamientos bacterianos. La fracción de fagos — donde los ARGs latentes se acumulan y desde donde pueden movilizarse hacia nuevos huéspedes bacterianos — está prácticamente ausente del monitoreo rutinario. Este es un punto ciego estructural en cómo rastreamos la diseminación de la resistencia.</p>
+    </div>
+
+    <h2>Los lugares donde ocurre la movilización</h2>
+
+    <p>Los genes no se mueven solos. La transición de un ARG fagémico latente a resistencia activa en un patógeno requiere condiciones específicas: un fago que encuentre un huésped bacteriano susceptible, un evento de infección exitoso, integración del gen transferido y presión selectiva que favorezca su retención. Entender qué entornos crean estas condiciones es central para la evaluación de riesgos.</p>
+
+    <h3>Plantas de tratamiento de aguas residuales</h3>
+
+    <p>Las plantas de tratamiento de aguas residuales son probablemente el foco ambiental más estudiado para la movilización de ARGs. Concentran residuos antibióticos, bacterias resistentes de fuentes clínicas y agrícolas, bacteriófagos y elementos genéticos móviles en una única y densa comunidad microbiana — exactamente las condiciones que favorecen la transferencia horizontal de genes. A pesar del tratamiento, los ARGs persisten en el efluente, y la evidencia apunta cada vez más a que las plantas de tratamiento no son meros conductos de la resistencia, sino incubadoras evolutivas donde los ARGs móviles emergen y se diversifican activamente (Larsson &amp; Flach, 2021).</p>
+
+    <h3>Suelos agrícolas</h3>
+
+    <p>Los suelos agrícolas reciben antibióticos a través del uso veterinario, el estiércol animal y el riego con aguas residuales tratadas. La investigación ha demostrado que los estresores químicos combinados — pesticidas, deposición de nitrógeno y metales pesados actuando simultáneamente — amplían la abundancia de ARGs codificados por fagos muy por encima de lo que produce cualquier estresor individual, un patrón consistente en estudios de campo y experimentos controlados (Calero-Cáceres et al., 2019). Esto importa porque la práctica agrícola moderna raramente involucra estresores únicos.</p>
+
+    <h3>La plastisfera</h3>
+
+    <p>Los microplásticos han creado un nuevo nicho ecológico sin precedentes evolutivos: la <em>plastisfera</em>, la comunidad de biopelículas que coloniza las superficies plásticas en entornos acuáticos. Esta superficie ofrece condiciones ideales para los encuentros entre fagos y huéspedes — densa, estructuralmente compleja y químicamente distinta del agua circundante. Investigación reciente ha mostrado además que nanomateriales como las nanopartículas de plata, liberados al ambiente acuático desde productos de consumo, aumentan la permeabilidad de las membranas bacterianas y facilitan la adsorción de fagos y la captación de ADN, acelerando la transferencia de ARGs de formas que agravan el riesgo de la plastisfera (Calero-Cáceres et al., 2019).</p>
+
+    <h3>El aire</h3>
+
+    <p>Quizás el hallazgo menos esperado en la investigación reciente sobre ARGs es la diseminación atmosférica. Se han documentado fagos portadores de ARGs en material particulado atmosférico urbano, y los entornos de transporte denso — estaciones de autobús y de metro — están emergiendo como puntos de concentración particulares. Los mecanismos no están completamente caracterizados, pero la implicación es clara: la separación física entre los reservorios ambientales de ARGs y la exposición humana es menor de lo que se suponía, y las rutas de exposición son más variadas que el agua y el suelo solos (Larsson &amp; Flach, 2021).</p>
+
+    <h2>Por qué la contaminación química es el acelerador</h2>
+
+    <p>El resistoma ambiental sería un problema manejable si fuera estático. No lo es. Los aportes químicos antropogénicos actúan como aceleradores, empujando los genes de resistencia desde el reservorio latente hacia la circulación activa.</p>
+
+    <p>Los residuos de antibióticos — de prescripción clínica, uso veterinario y descargas de fabricación — son el factor desencadenante mejor documentado. Las concentraciones subinhibitorias de antibióticos inducen la respuesta de estrés bacteriana, que a su vez desencadena la inducción de profagos: los fagos durmientes integrados en cromosomas bacterianos se activan, se replican y lisan a sus huéspedes, liberando partículas que pueden portar ARGs al ambiente. Liao et al. (2024) demostraron esto a escala global, mostrando que los ARGs codificados por profagos están sistemáticamente enriquecidos en entornos impactados por humanos en comparación con los prístinos, a través de decenas de tipos de ecosistemas — una huella directa de esta retroalimentación: selección-inducción.</p>
+
+    <p>Más allá de los antibióticos, el panorama es más complejo de lo que solía ser. Los metales pesados co-seleccionan para la resistencia. El TiO₂ — componente habitual de filtros solares, pinturas y colorantes alimentarios — promueven la transferencia de resistencia mediada por transducción de fagos cuando se activa por luz UV. Los pesticidas, en combinación con la deposición atmosférica de nitrógeno, crean condiciones relativas que amplían la abundancia de ARGs fagémicos. Estas no son exposiciones exóticas; son rasgos de la actividad industrial y agrícola ordinaria.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Mecanismo</th>
+          <th>Hallazgo clave</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Residuos antibióticos</td>
+          <td>Inducción de señal SOS → activación de profagos → transducción</td>
+          <td>ARGs de profagos enriquecidos en todos los entornos impactados por humanos vs. sitios prístinos (Liao et al., 2024)</td>
+        </tr>
+        <tr>
+          <td>Pesticidas, metales pesados, deposición de nitrógeno</td>
+          <td>El estrés químico combinado amplifica la abundancia de ARGs fagémicos; co-selección para la resistencia</td>
+          <td>Identificados como factores clave de movilización en suelos y sistemas acuáticos (Calero-Cáceres et al., 2019)</td>
+        </tr>
+        <tr>
+          <td>Nanomateriales (p. ej. nanopartículas de plata)</td>
+          <td>Disrupción de membrana → mayor adsorción de fagos y captación de ADN</td>
+          <td>Co-driver químico emergente en entornos acuáticos (Calero-Cáceres et al., 2019)</td>
+        </tr>
+        <tr>
+          <td>Fotoexcitación de TiO₂</td>
+          <td>Especies reactivas de oxígeno promueven la transferencia génica mediada por fagos bajo UV</td>
+          <td>Parte del paisaje más amplio de contaminación química antropogénica (Larsson &amp; Flach, 2021)</td>
+        </tr>
+        <tr>
+          <td>Microplásticos / plastisfera</td>
+          <td>La superficie de biopelícula enriquece los encuentros fago-huésped; amplifica la diseminación</td>
+          <td>Nuevo nicho ecológico sin precedentes evolutivos (Larsson &amp; Flach, 2021)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>La paradoja del fago — y lo que significa para la terapia de fagos</h2>
+
+    <p>Si leyeron mi artículo anterior sobre terapia de fagos, habrán notado una contraposición. Los fagos se están desarrollando como solución a la resistencia antibiótica — y simultáneamente están implicados como vehículos de diseminación de genes de resistencia. Ambas cosas son ciertas, y entender por qué, requiere sostener dos realidades a la vez.</p>
+
+    <p>Los fagos que se desarrollan para terapia son cuidadosamente seleccionados, estrictamente líticos (matan bacterias en lugar de integrarse en ellas) y sometidos a cribado genómico completo para confirmar la ausencia de genes de resistencia, secuencias asociadas a lisogenia y factores de virulencia. El caso GA23 que describí en mi artículo anterior — un fago aislado, secuenciado en plataformas Nanopore e Illumina, y confirmado como limpio antes de cualquier prueba <em>in vivo</em> — representa exactamente este enfoque.</p>
+
+    <p>Los fagos que mueven ARGs a través del ambiente no son, en su mayoría, esos fagos. Son la vasta diversidad, poco caracterizada, de fagos silvestres en aguas residuales, suelos y ríos — fagos temperados que se integran en lugar de matar, fagos que coevolucionaron con sus huéspedes bacterianos durante miles de millones de años y acumularon una extraordinaria variedad de carga genética móvil. Las poblaciones terapéuticas y las ambientales son distintas, seleccionadas para propiedades diferentes.</p>
+
+    <p>Sin embargo, las preparaciones de fagos terapéuticos, si se despliegan a escala clínica, entran en los mismos ciclos ambientales. Los pacientes excretan fagos. Los residuos sanitarios entran en los sistemas de tratamiento. Las descargas de fabricación llegan a los cursos de agua. La limpieza genómica de un fago terapéutico es un prerrequisito — no una garantía de que no tendrá huella ambiental a escala. Esta es una de las razones por las que la infraestructura de vigilancia importa para la terapia de fagos no solo como herramienta de monitoreo clínico, sino también como herramienta ambiental.</p>
+
+    <h2>Cómo se ve una respuesta seria</h2>
+
+    <p>La crisis de resistencia antibiótica no fue principalmente un fracaso de la ciencia. Las moléculas funcionaban. Fue un fracaso de los sistemas alrededor de la ciencia: vigilancia inadecuada, incentivos económicos desalineados, marcos regulatorios que no podían seguir el ritmo de la evolución de la resistencia, y una tendencia persistente a tratar un problema biológico dinámico como uno de ingeniería estática.</p>
+
+    <p>El resistoma ambiental presenta el mismo desafío estructural. La ciencia es suficientemente clara: los fagos portan ARGs, la contaminación química acelera su movilización, los entornos impactados por humanos son focos, y los sistemas de vigilancia que detectarían el riesgo emergente en tiempo real prácticamente no existen para la fracción viral de las muestras ambientales. Lo que queda es el problema más difícil de construir las instituciones e infraestructuras para actuar sobre ese conocimiento.</p>
+
+    <p>Eso significa extender los programas de monitoreo ambiental para incluir la fracción de fagos junto a los aislamientos bacterianos. Significa aplicar la caracterización genómica — el tipo que se realiza rutinariamente para candidatos terapéuticos — a las poblaciones de fagos ambientales en sitios de alto riesgo como plantas de tratamiento de aguas residuales, zonas de descarga de efluentes hospitalarios y áreas de agricultura intensiva. Significa tratar la reducción de la contaminación química no solo como una medida de protección ambiental, sino como una intervención contra la resistencia antibiótica.</p>
+
+    <p>Y significa reconocer que la clínica y el ambiente no son sistemas separados. Los genes de resistencia que emerjan en un paciente dentro de cinco años estarán circulando hoy en un río, una columna de suelo o una muestra de aire de una estación de transporte. La distancia entre esos dos puntos es menor de lo que actualmente reconoce nuestra infraestructura de vigilancia — y cerrar esa brecha es un trabajo que no puede esperar a que la crisis se vuelva imposible de ignorar.</p>
+
+    <div class="sources">
+      <h2>Fuentes</h2>
+      <ol>
+        <li>Larsson, D. G. J., &amp; Flach, C.-F. (2021). Antibiotic resistance in the environment. <em>Nature Reviews Microbiology</em>, 20, 257–269. https://doi.org/10.1038/s41579-021-00649-x</li>
+        <li>Calero-Cáceres, W., Ye, M., &amp; Balcázar, J. L. (2019). Bacteriophages as Environmental Reservoirs of Antibiotic Resistance. <em>Trends in Microbiology</em>, 27(7), 570–577. https://doi.org/10.1016/j.tim.2019.02.008</li>
+        <li>Liao, H., Liu, C., Zhou, S., et al. (2024). Prophage-encoded antibiotic resistance genes are enriched in human-impacted environments. <em>Nature Communications</em>, 15. https://doi.org/10.1038/s41467-024-52450-y</li>
+      </ol>
+    </div>
+
+    <div class="footer-cc">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0; height:22px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+      </a>
+      <span>© 2026 Benjamín Garcés C. — Bajo licencia <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> salvo indicación contraria.</span>
+    </div>
+
+  </div><!-- end ES -->
+
+</div><!-- end article-wrap -->
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.documentElement.lang = lang;
+}
+</script>
+
+</body>
+</html>
